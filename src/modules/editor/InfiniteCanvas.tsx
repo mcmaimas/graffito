@@ -25,7 +25,8 @@ const TextBlock = ({
         style={{
           width: `${width}px`,
           height: `${height}px`,
-          background: color
+          background: color,
+          fontSize: '6px'
         }}
       >
         {text}
@@ -41,7 +42,7 @@ export interface Square {
 
 export const generateGrid = () => {
   let grid: Square[][] = []; 
-  for(let i = 0; i < 50; i++) {
+  for(let i = 0; i < 100; i++) {
     grid[i] = genereateRow(i);
   }
   return grid;
@@ -49,7 +50,7 @@ export const generateGrid = () => {
 
 export const genereateRow = (rowNum: number) => {
   let row : Square[] = []
-  for(let i = 0; i < 50; i++) {
+  for(let i = 0; i < 100; i++) {
     row[i] = {name: `${rowNum}-${i}`}
   }
   return row;

@@ -76,9 +76,9 @@ export default class CanvasStore {
     canvasData.pixelRatio = window.devicePixelRatio || 1;
     canvasData.container.width = containerWidth;
     canvasData.container.height = containerHeight;
-    canvasData.camera.x = 1.5 * RECT_W;
-    canvasData.camera.y = 1.5 * RECT_H;
-    canvasData.camera.z = containerWidth / (2 * Math.tan(CAMERA_ANGLE));
+    canvasData.camera.x = RECT_W;
+    canvasData.camera.y =  RECT_H;
+    canvasData.camera.z = containerWidth / Math.tan(CAMERA_ANGLE);
   }
   public static get screen() {
     const { x, y, z } = this.camera;
@@ -148,7 +148,7 @@ export default class CanvasStore {
 
   public static zoomCamera(deltaX: number, deltaY: number) {
     // Normal zoom is quite slow, we want to scale the amount quite a bit
-    const zoomScaleFactor = 10;
+    const zoomScaleFactor = 2;
     const deltaAmount = zoomScaleFactor * Math.max(deltaY);
     const { x: oldX, y: oldY, z: oldZ } = this.camera;
     const oldScale = { ...this.scale };

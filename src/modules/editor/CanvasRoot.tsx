@@ -5,7 +5,7 @@ import InfiniteCanvas from "./InfiniteCanvas";
 import useRenderLoop from "../../modules/core/RenderLoop";
 
 const wheelListener = (e: WheelEvent) => {
-  const friction = 1;
+  const friction = 0.5;
   const event = e as WheelEvent;
   const deltaX = event.deltaX * friction;
   const deltaY = event.deltaY * friction;
@@ -27,7 +27,7 @@ const CanvasRoot = () => {
     if (width === 0 || height === 0) return;
     CanvasStore.initialize(width, height);
   }, [width, height]);
-  const frame = useRenderLoop(60);
+  const frame = useRenderLoop(10);
   return (
     <div className="w-full h-full">
       <div
@@ -35,6 +35,7 @@ const CanvasRoot = () => {
         ref={canvas}
         onWheel={wheelListener}
         onPointerMove={pointerListener}
+
       >
         <InfiniteCanvas frame={frame}></InfiniteCanvas>
       </div>
