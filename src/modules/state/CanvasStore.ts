@@ -3,7 +3,7 @@ import {
   scaleWithAnchorPoint,
 } from "../core/camera-utils";
 import { CAMERA_ANGLE, RECT_H, RECT_W } from "../core/constants";
-// import { radians } from "../core/math-utils";
+import { SQUARES_PER_ROW } from "../core/constants";
 
 export interface CanvasState {
   shouldRender: boolean;
@@ -76,8 +76,8 @@ export default class CanvasStore {
     canvasData.pixelRatio = window.devicePixelRatio || 1;
     canvasData.container.width = containerWidth;
     canvasData.container.height = containerHeight;
-    canvasData.camera.x = RECT_W;
-    canvasData.camera.y =  RECT_H;
+    canvasData.camera.x = RECT_W * (SQUARES_PER_ROW / 2);
+    canvasData.camera.y =  RECT_H * (SQUARES_PER_ROW / 2);
     canvasData.camera.z = containerWidth / Math.tan(CAMERA_ANGLE);
   }
   public static get screen() {
