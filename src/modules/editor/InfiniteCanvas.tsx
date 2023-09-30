@@ -7,17 +7,6 @@ import {generateGrid, Square} from './testData';
 
 
 const InfiniteCanvas = ({ frame }: { frame: string }) => {
-  const colors = [
-    "#f1f7ed",
-    "#61c9a8",
-    "#7ca982",
-    "#e0eec6",
-    "#c2a83e",
-    "#ff99c8",
-    "#fcf6bd",
-    "#9c92a3",
-    "#c6b9cd"
-  ];
   const rectW = RECT_W;
   const rectH = RECT_H;
   const scale = CanvasStore.scale;
@@ -39,8 +28,7 @@ const InfiniteCanvas = ({ frame }: { frame: string }) => {
           {row.map((square: Square, columnIdx: number) => (
             <CanvasSquare
               key={`${rowIdx}-${columnIdx}`}
-              text={square.name}
-              color={colors[(columnIdx * rowIdx) % colors.length]}
+              square={square}
               left={rowIdx * rectW}
               top={columnIdx * rectH}
               width={rectW}

@@ -1,10 +1,4 @@
-export const cameraToScreenCoordinates = (
-  x: number,
-  y: number,
-  z: number,
-  cameraAngle: number,
-  screenAspect: number
-) => {
+export const cameraToScreenCoordinates = (x: number, y: number, z: number, cameraAngle: number, screenAspect: number) => {
   const width = 2 * z * Math.tan(cameraAngle);
   const height = width / screenAspect;
   const screenX = x - width / 2;
@@ -24,10 +18,7 @@ export const scaleWithAnchorPoint = (
   scaleX2: number,
   scaleY2: number
 ) => {
-  const cameraX2 =
-    (anchorPointX * (scaleX2 - scaleX1) + scaleX1 * cameraX1) / scaleX2;
-  const cameraY2 =
-    (anchorPointY * (scaleY2 - scaleY1) + scaleY1 * cameraY1) / scaleY2;
-
+  const cameraX2 = (anchorPointX * (scaleX2 - scaleX1) + scaleX1 * cameraX1) / scaleX2;
+  const cameraY2 = (anchorPointY * (scaleY2 - scaleY1) + scaleY1 * cameraY1) / scaleY2;
   return { x: cameraX2, y: cameraY2 };
 };
