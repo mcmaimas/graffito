@@ -6,3 +6,7 @@ Get Material UI in this project ASAP
 Cut Tailwind
 - tailwind is fine, but I'm just uncomfortable and slower with it
 - if it's more performant i will switch to it eventually
+
+Current Problem
+- zoom is causing a reset back to center
+- it's not respecting cursor position
