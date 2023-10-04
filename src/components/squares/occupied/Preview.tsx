@@ -1,5 +1,6 @@
-import { Box, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import { Square } from "../../../hooks/useGetTestWorldCanvas";
+import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 
 interface PreviewProps {
   square: Square;
@@ -9,26 +10,45 @@ interface PreviewProps {
 
 const Preview = ({square, open, handleClose}: PreviewProps) => {
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth="lg" fullWidth
+    <Dialog open={open} onClose={handleClose} maxWidth="xl" fullWidth
+    
       PaperProps={{
         style:{
-        boxShadow: `2px 2px 200px 2px ${square.color}`    
+        boxShadow: `1px 1px 20px 1px ${square.color}`    
       }}}
     >
       <DialogTitle>Post</DialogTitle>
-      <DialogContent>
+      <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 16,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          X
+        </IconButton>
+      <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
         <Box display="flex" >
-          <Box flexGrow={1} overflow="hidden">    
+          <Box width="66%" overflow="hidden" m={2} p={2} bgcolor="#FFFFFF"> 
               <p>
               post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
               </p>
             
           </Box>
-          <Box>
-            comment section
+          <Box width="33%" flexGrow={1} m={2} p={2} >
+            <Box bgcolor="#FFFFFF" mb={2} p={2}>Comment 1</Box>
+            <Box bgcolor="#FFFFFF" mb={2} p={2}>Comment 2</Box>
+            <Box bgcolor="#FFFFFF" mb={2} p={2}>Comment 3</Box>
           </Box>
         </Box>
       </DialogContent>
+      <DialogActions>
+        <Button>Like</Button>
+        <Button>Reply</Button>
+      </DialogActions>
     </Dialog>
   )
 }
