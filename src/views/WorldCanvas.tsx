@@ -1,12 +1,12 @@
 import { memo, useMemo } from "react";
 
-import { RECT_H, RECT_W } from "../../modules/core/constants";
-import CanvasStore from "../../modules/state/CanvasStore";
-import CanvasSquare from './CanvasSquare';
-import {generateGrid, Square} from './testData';
+import { RECT_H, RECT_W } from "../modules/core/constants";
+import CanvasStore from "../modules/state/CanvasStore";
+import CanvasSquare from '../components/squares/CanvasSquare';
+import {generateGrid, Square} from '../hooks/useGetTestWorldCanvas';
 
 
-const InfiniteCanvas = ({ frame }: { frame: string }) => {
+const WorldCanvas = ({ frame }: { frame: string }) => {
   const rectW = RECT_W;
   const rectH = RECT_H;
   const scale = CanvasStore.scale;
@@ -41,4 +41,4 @@ const InfiniteCanvas = ({ frame }: { frame: string }) => {
   );
 };
 
-export default memo(InfiniteCanvas);
+export default memo(WorldCanvas);

@@ -10,3 +10,6 @@ Cut Tailwind
 Current Problem
 - zoom is causing a reset back to center
 - it's not respecting cursor position
+
+Good example of passing props to keyframes
+- https://www.appsloveworld.com/reactjs/100/7/how-to-pass-props-to-keyframes-in-styled-component-with-react
