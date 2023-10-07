@@ -49,9 +49,9 @@ const OccupiedSquare = ({square}: OccupiedSquareProps) => {
               </p>
             </FadingPaperArticle>
             <Box position="absolute" bottom={0} width="100%" height="32px" display="flex" justifyContent="space-between" bgcolor="#C9C9C911">
-              <Stat icon={<Visibility fontSize="small"/>} count={200}/>
-              <Stat icon={<Recommend fontSize="small"/>} count={40}/>
-              <Stat icon={<Forum fontSize="small"/>} count={7}/>
+              <Stat icon={<Visibility fontSize="small"/>} count={square.stats.views}/>
+              <Stat icon={<Recommend fontSize="small"/>} count={square.stats.likes}/>
+              <Stat icon={<Forum fontSize="small"/>} count={square.stats.comments}/>
             </Box>
           </Box>
         </Box>
