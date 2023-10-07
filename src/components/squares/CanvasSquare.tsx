@@ -17,7 +17,7 @@ const CanvasSquare = ({square, left, top, width, height}: CanvasSquareProps) => 
   
   return (
     <Position left={left} top={top} width={width} height={height}>  
-      <Box display="flex" alignItems="center" justifyContent="center" width={`${width}px`} height={`${height}px`} fontSize="6px">
+      <Box display="flex" alignItems="center" justifyContent="center" width={`${width}px`} height={`${height}px`} >
         {square?.content ? (
           <OccupiedSquare square={square} />
         ) : (
