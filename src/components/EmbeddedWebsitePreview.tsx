@@ -6,7 +6,6 @@ interface PreviewProps {
 
 const EmbeddedWebistePreview = ({srcUrl}: PreviewProps) => {
   return (
-
     <iframe
       id="inlineFrameExample"
       title="Inline Frame Example"

@@ -47,39 +47,36 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
     >
       <DialogTitle>Create Post</DialogTitle>
       <IconButton aria-label="close" onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 16,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <Close />
-        </IconButton>
+        sx={{
+          position: 'absolute',
+          right: 16,
+          top: 8,
+          color: (theme) => theme.palette.grey[500],
+        }}
+      >
+        <Close />
+      </IconButton>
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
         <Box m={2} display="flex" justifyContent="space-around" alignItems="center">
-            {/* <UploadFiles square={square} files={files} setFiles={setFiles} setFilePaths={setFilePaths}/> */}
-            <UploadFiles square={square} files={files} setFiles={setFiles} />
-          {/* <Box>
-          <TextField value={text} onChange={(e:any)=>setSrcUrl(e.target.value)} fullWidth placeholder="Source URL"/>
-          {srcUrl && (
-            <EmbeddedWebistePreview srcUrl={srcUrl}/>
-          )}
-          
-        </Box> */}
+          <UploadFiles square={square} files={files} setFiles={setFiles} />
+          {/* 
+            <Box>
+              <TextField value={text} onChange={(e:any)=>setSrcUrl(e.target.value)} fullWidth placeholder="Source URL"/>
+              {srcUrl && (
+                <EmbeddedWebistePreview srcUrl={srcUrl}/>
+              )}
+            </Box> 
+          */}
         </Box>
         <Box m={2}>
           <TextField value={title} onChange={(e:any)=>setTitle(e.target.value)} fullWidth  placeholder="Title (optional)"/>
-          </Box>
-
+        </Box>
         <Box m={2}>
           <TextField value={text} onChange={(e:any)=>setText(e.target.value)} fullWidth multiline minRows={3} placeholder="Lorem ipsum..."/>
-          </Box>
-
-          <Box height={RECT_H} width={RECT_W}>
-            <ZoomedIn square={fakeSquare} />
-          </Box>
-
+        </Box>
+        <Box height={RECT_H} width={RECT_W}>
+          <ZoomedIn square={fakeSquare} />
+        </Box>
       </DialogContent>
       <DialogActions>
         <Button>Post</Button>

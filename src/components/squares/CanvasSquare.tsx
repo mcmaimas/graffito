@@ -24,7 +24,6 @@ const CanvasSquare = ({square, left, top, width, height}: CanvasSquareProps) => 
           <AvailableSqaure square={square} />
         )}
       </Box>
-      
     </Position>
   );
 };

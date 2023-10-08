@@ -7,6 +7,7 @@ import { GRANULAR_ZOOM_MAX } from "../CanvasSquare";
 import ZoomedOut from "../ZoomedOut";
 import { useCallback, useState } from "react";
 import StakeClaim from "./StakeClaim";
+import { Add } from "@mui/icons-material";
 
 interface AvailableSquareProps {
   square: Square;
@@ -22,7 +23,7 @@ const AvailableSqaure = ({square}: AvailableSquareProps) => {
       ) : (
         <Box display="flex" alignItems="center" justifyContent="center" bgcolor={LEAF_COLOR_SCHEME[square.color]} height="100%" width="100%" border={selected ? "1px solid black" : undefined}>
           <IconButton onClick={selectSquare}>
-            +
+            <Add />
           </IconButton>
         </Box>
       )}
