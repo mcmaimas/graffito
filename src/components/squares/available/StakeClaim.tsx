@@ -3,7 +3,7 @@ import { Square } from "../../../hooks/useGetTestWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 // import EmbeddedWebistePreview from "../../EmbeddedWebsitePreview";
 import { useMemo, useState } from "react";
-import UploadFiles from "../../UploadFiles";
+// import UploadFiles from "../../UploadFiles";
 import { ZoomedIn } from "../occupied/OccupiedSquare";
 import { RECT_H, RECT_W } from "../../../modules/core/constants";
 import { Close } from "@mui/icons-material";
@@ -19,16 +19,17 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
   // const [srcUrl, setSrcUrl] = useState<string>(); 
   const [title, setTitle] = useState<string>();
   const [text, setText] = useState<string>();
-  const [files, setFiles] = useState<FileList>({} as FileList);
+  // const [files, setFiles] = useState<FileList>({} as FileList);
   // const [filePaths, setFilePaths] = useState<string[]>([]);
 
   const fakeSquare: Square = useMemo(() => {
     return {
-      name: title || 'Default Title',
+      name: 'name',
       color: 'green',
       content: {
         author: "Sam",
         content: text || '',
+        title: title || ''
       },
       stats: {
         views: 0,
@@ -57,17 +58,9 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
         <Close />
       </IconButton>
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
-        <Box m={2} display="flex" justifyContent="space-around" alignItems="center">
+        {/* <Box m={2} display="flex" justifyContent="space-around" alignItems="center">
           <UploadFiles square={square} files={files} setFiles={setFiles} />
-          {/* 
-            <Box>
-              <TextField value={text} onChange={(e:any)=>setSrcUrl(e.target.value)} fullWidth placeholder="Source URL"/>
-              {srcUrl && (
-                <EmbeddedWebistePreview srcUrl={srcUrl}/>
-              )}
-            </Box> 
-          */}
-        </Box>
+        </Box> */}
         <Box m={2}>
           <TextField value={title} onChange={(e:any)=>setTitle(e.target.value)} fullWidth  placeholder="Title (optional)"/>
         </Box>

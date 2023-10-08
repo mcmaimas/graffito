@@ -4,6 +4,7 @@ import { LeafColor, color_randomizer } from '../theme/colors';
 interface Post {
   author: string;
   content: string;
+  title: string;
 }
 
 // Instead of isAvailable, we'll attach a post object of some sort
@@ -45,7 +46,7 @@ const generateSquare = (rowNum: number, colNum: number): Square => {
   const filledSqaure = randomNumber === colNum;
 
   const color: LeafColor = filledSqaure ? color_randomizer[randomIdx] : "default";
-  const content = filledSqaure ? {author: "Sam", content: `Random Generated Content`} as Post : undefined;
+  const content = filledSqaure ? {author: "Sam", content: `Random Generated Content`, title: `Random Title`} as Post : undefined;
   return {
     name: `${rowNum}-${colNum}`,
     color: color,
@@ -821,7 +822,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 84,
@@ -2341,7 +2343,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 52,
@@ -3490,7 +3493,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 79,
@@ -3694,7 +3698,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 1,
@@ -4355,7 +4360,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 74,
@@ -5659,7 +5665,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 18,
@@ -5744,7 +5751,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 27,
@@ -6027,7 +6035,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 58,
@@ -6924,7 +6933,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 57,
@@ -7866,7 +7876,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 61,
@@ -8005,7 +8016,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 76,
@@ -8371,7 +8383,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 16,
@@ -9142,7 +9155,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 1,
@@ -9452,7 +9466,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 35,
@@ -10097,7 +10112,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 6,
@@ -10425,7 +10441,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 42,
@@ -11142,7 +11159,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 21,
@@ -12102,7 +12120,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 27,
@@ -12783,7 +12802,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 2,
@@ -14049,7 +14069,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 42,
@@ -14359,7 +14380,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 76,
@@ -18234,7 +18256,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 5,
@@ -19149,7 +19172,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 6,
@@ -21722,7 +21746,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 91,
@@ -23098,7 +23123,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 43,
@@ -23354,7 +23380,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 71,
@@ -23457,7 +23484,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 82,
@@ -24336,7 +24364,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 79,
@@ -24394,7 +24423,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 85,
@@ -27095,7 +27125,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 84,
@@ -30635,7 +30666,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 76,
@@ -31244,7 +31276,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 43,
@@ -31817,7 +31850,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 6,
@@ -32388,7 +32422,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 69,
@@ -33501,7 +33536,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 92,
@@ -33559,7 +33595,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 98,
@@ -36721,7 +36758,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 48,
@@ -36761,7 +36799,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 52,
@@ -38623,7 +38662,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 58,
@@ -39781,7 +39821,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 86,
@@ -41283,7 +41324,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 52,
@@ -41674,7 +41716,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 95,
@@ -42067,7 +42110,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 38,
@@ -44903,7 +44947,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 52,
@@ -45557,7 +45602,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 24,
@@ -45849,7 +45895,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 56,
@@ -46764,7 +46811,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 57,
@@ -47400,7 +47448,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 27,
@@ -47494,7 +47543,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 37,
@@ -47588,7 +47638,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 47,
@@ -47655,7 +47706,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 54,
@@ -50257,7 +50309,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 42,
@@ -51705,7 +51758,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 2,
@@ -53016,7 +53070,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 47,
@@ -53380,7 +53435,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 87,
@@ -53492,7 +53548,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 99,
@@ -53570,7 +53627,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 7,
@@ -55061,7 +55119,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 72,
@@ -57258,7 +57317,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 15,
@@ -57847,7 +57907,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 80,
@@ -61198,7 +61259,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 51,
@@ -61789,7 +61851,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 16,
@@ -62776,7 +62839,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 25,
@@ -63718,7 +63782,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 29,
@@ -63794,7 +63859,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 37,
@@ -64311,7 +64377,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 94,
@@ -64722,7 +64789,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 39,
@@ -65493,7 +65561,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 24,
@@ -65587,7 +65656,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 34,
@@ -67791,7 +67861,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 78,
@@ -69599,7 +69670,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 78,
@@ -70280,7 +70352,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 53,
@@ -71357,7 +71430,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 72,
@@ -71505,7 +71579,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 88,
@@ -71628,7 +71703,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 1,
@@ -72262,7 +72338,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 71,
@@ -73105,7 +73182,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 64,
@@ -74913,7 +74991,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 64,
@@ -76071,7 +76150,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 92,
@@ -76977,7 +77057,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 92,
@@ -78524,7 +78605,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 63,
@@ -78591,7 +78673,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 70,
@@ -78721,7 +78804,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 84,
@@ -80457,7 +80541,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 76,
@@ -80596,7 +80681,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 91,
@@ -81556,7 +81642,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 97,
@@ -81607,7 +81694,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 2,
@@ -83451,7 +83539,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 6,
@@ -84265,7 +84354,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 96,
@@ -84685,7 +84775,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 42,
@@ -84905,7 +84996,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 66,
@@ -84981,7 +85073,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 74,
@@ -85201,7 +85294,8 @@ const mockGrid: Square[][] = [
             "color": "red",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 98,
@@ -85801,7 +85895,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 64,
@@ -85958,7 +86053,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 81,
@@ -86999,7 +87095,8 @@ const mockGrid: Square[][] = [
             "color": "yellow",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 96,
@@ -87203,7 +87300,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 18,
@@ -88802,7 +88900,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 95,
@@ -88952,7 +89051,8 @@ const mockGrid: Square[][] = [
             "color": "orange",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 11,
@@ -89217,7 +89317,8 @@ const mockGrid: Square[][] = [
             "color": "darkGreen",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 40,
@@ -90105,7 +90206,8 @@ const mockGrid: Square[][] = [
             "color": "green",
             "content": {
                 "author": "Sam",
-                "content": "Random Generated Content"
+                "content": "Random Generated Content",
+                "title": "Random Title",
             },
             "stats": {
                 "views": 38,
