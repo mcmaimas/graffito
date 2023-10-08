@@ -23,11 +23,30 @@ const OccupiedSquare = ({square}: OccupiedSquareProps) => {
     {(CanvasStore.camera.z > GRANULAR_ZOOM_MAX) ? (
       <ZoomedOut square={square} selected={selected} onClick={selectSquare}/>
     ) : (
-      <Box bgcolor={LEAF_COLOR_SCHEME[square.color]} height="100%" width="100%" p={1} onClick={selectSquare}>
+      <ZoomedIn square={square} onClick={selectSquare} />
+    )}
+    <Preview square={square} open={selected} handleClose={()=>setSelected(false)}/>
+    </>
+  )
+}
+
+interface ZoomedInProps {
+  square: Square;
+  onClick?: ()=>void;
+}
+
+export const ZoomedIn = ({square, onClick}: ZoomedInProps) => {
+  return (
+<Box bgcolor={LEAF_COLOR_SCHEME[square.color]} height="100%" width="100%" p={1} onClick={onClick}>
         <Box display="flex" flexDirection="column" bgcolor="white" height="100%" width="100%" borderRadius={0.5} position="relative">
           <Box flexGrow={1} overflow="hidden">
             <FadingPaperArticle >
               <p style={{padding: "8px"}}>
+                {square?.content?.content ? (<>
+                {square.content.content}
+                </>) : (
+<>
+                
               post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
               post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
               post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
@@ -46,6 +65,9 @@ const OccupiedSquare = ({square}: OccupiedSquareProps) => {
               post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
               post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
               post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
+              
+              </>
+              )}
               </p>
             </FadingPaperArticle>
             <Box position="absolute" bottom={0} width="100%" height="32px" display="flex" justifyContent="space-between" bgcolor="#C9C9C911">
@@ -56,9 +78,6 @@ const OccupiedSquare = ({square}: OccupiedSquareProps) => {
           </Box>
         </Box>
       </Box>
-    )}
-    <Preview square={square} open={selected} handleClose={()=>setSelected(false)}/>
-    </>
   )
 }
 
