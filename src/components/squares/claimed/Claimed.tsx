@@ -2,10 +2,10 @@ import {useCallback, useState } from "react";
 
 import CanvasStore from "../../../modules/state/CanvasStore";
 import { ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
-import { GRANULAR_ZOOM_MAX } from "../CanvasSquare";
 import ZoomedOut from "../ZoomedOut";
 import Preview from "./Preview";
 import PostPreview from "../../PostPreview";
+import { GRANULAR_ZOOM_MAX } from "../../../modules/core/constants";
 
 interface ClaimedProps {
   square: ClaimedSquare;

@@ -3,11 +3,11 @@ import { Box, IconButton } from "@mui/material";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import CanvasStore from "../../../modules/state/CanvasStore";
 import { UnclaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
-import { GRANULAR_ZOOM_MAX } from "../CanvasSquare";
 import ZoomedOut from "../ZoomedOut";
 import { useCallback, useState } from "react";
 import StakeClaim from "./StakeClaim";
 import { Add } from "@mui/icons-material";
+import { GRANULAR_ZOOM_MAX } from "../../../modules/core/constants";
 
 interface UnclaimedProps {
   square: UnclaimedSquare;

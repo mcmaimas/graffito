@@ -5,8 +5,6 @@ import { BulkSquare, ClaimedSquare, UnclaimedSquare } from "../../hooks/canvas/u
 import Claimed from "./claimed/Claimed";
 import Unclaimed from "./unclaimed/Unclaimed";
 
-export const GRANULAR_ZOOM_MAX = 1000;
-
 interface CanvasSquareProps extends CanvasPosition {
   square: BulkSquare;
   width: number;

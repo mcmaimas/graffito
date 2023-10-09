@@ -71,6 +71,10 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
         <Box m={2}>
           <TextField value={text} onChange={(e:any)=>setText(e.target.value)} fullWidth multiline minRows={3} placeholder="Lorem ipsum..."/>
         </Box>
+        <Box m={2}>
+          <Box>File Upload</Box>
+          <Box>Link to somewhere else</Box>
+        </Box>
         <Box height={RECT_H} width={RECT_W}>
           <PostPreview square={previewClaimedSquare} />
         </Box>

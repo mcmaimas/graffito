@@ -6,12 +6,12 @@ import { Forum, Recommend, Visibility } from "@mui/icons-material";
 import { TextPost } from "../hooks/post/useGetPost";
 import InteractionStatItem from "./InteractionStatItem";
 
-interface ZoomedInProps {
+interface PostPreviewProps {
   square: ClaimedSquare;
   onClick?: ()=>void;
 }
 
-export const PostPreview = ({square, onClick}: ZoomedInProps) => {
+export const PostPreview = ({square, onClick}: PostPreviewProps) => {
   if (square.post.type) return <TextPostPreview color={square.color} stats={square.stats} post={square.post as TextPost} onClick={onClick}/>
   return (<>No Preivew Available Yet for ${square.post.type}</>)
 }
