@@ -2,18 +2,18 @@ import { Box, IconButton } from "@mui/material";
 
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import CanvasStore from "../../../modules/state/CanvasStore";
-import { Square } from "../../../hooks/useGetTestWorldCanvas";
+import { UnclaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import { GRANULAR_ZOOM_MAX } from "../CanvasSquare";
 import ZoomedOut from "../ZoomedOut";
 import { useCallback, useState } from "react";
 import StakeClaim from "./StakeClaim";
 import { Add } from "@mui/icons-material";
 
-interface AvailableSquareProps {
-  square: Square;
+interface UnclaimedSquareProps {
+  square: UnclaimedSquare;
 }
 
-const AvailableSqaure = ({square}: AvailableSquareProps) => {
+const UnclaimedSquare = ({square}: UnclaimedSquareProps) => {
   const [selected, setSelected] = useState<boolean>(false);
   const selectSquare = useCallback(() => setSelected(true), [setSelected]);
   return (
@@ -32,4 +32,4 @@ const AvailableSqaure = ({square}: AvailableSquareProps) => {
   )
 }
 
-export default AvailableSqaure;
+export default UnclaimedSquare;

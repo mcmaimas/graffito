@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Box, Button } from "@mui/material";
-import { Square } from "../hooks/useGetTestWorldCanvas";
+import { UnclaimedSquare } from "../hooks/canvas/useGetWorldCanvas";
 import { RECT_H, RECT_W } from "../modules/core/constants";
 
 
@@ -10,7 +10,7 @@ import { RECT_H, RECT_W } from "../modules/core/constants";
 // }
 
 
-const UploadFiles: FC<{square: Square, files: FileList, setFiles: (files: FileList) => void }> = ({square, files, setFiles}) => {
+const UploadFiles: FC<{square: UnclaimedSquare, files: FileList, setFiles: (files: FileList) => void }> = ({square, files, setFiles}) => {
   return (
     <Box >
       <Box display="flex" alignItems="center" justifyContent="center" borderRadius="4px" py={4} >

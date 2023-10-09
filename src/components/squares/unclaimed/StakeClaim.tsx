@@ -1,15 +1,15 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField } from "@mui/material";
-import { Square } from "../../../hooks/useGetTestWorldCanvas";
+import { ClaimedSquare, UnclaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 // import EmbeddedWebistePreview from "../../EmbeddedWebsitePreview";
 import { useMemo, useState } from "react";
 // import UploadFiles from "../../UploadFiles";
-import { ZoomedIn } from "../occupied/OccupiedSquare";
+import { ZoomedIn } from "../claimed/ClaimedSquare";
 import { RECT_H, RECT_W } from "../../../modules/core/constants";
 import { Close } from "@mui/icons-material";
 
 interface PreviewProps {
-  square: Square;
+  square: UnclaimedSquare;
   open: boolean;
   handleClose: ()=>void;
 }
@@ -22,19 +22,21 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
   // const [files, setFiles] = useState<FileList>({} as FileList);
   // const [filePaths, setFilePaths] = useState<string[]>([]);
 
-  const fakeSquare: Square = useMemo(() => {
+  const previewClaimedSquare: ClaimedSquare = useMemo(() => {
     return {
-      name: 'name',
+      resourceKey: 'rKey',
       color: 'green',
-      content: {
-        author: "Sam",
-        content: text || '',
-        title: title || ''
+      status: 'claimed',
+      post: {
+        type: 'text',
+        author: 'me',
+        content: text || 'Lorem Ipsum aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end',
+        title: title || 'My Title heretitle'
       },
       stats: {
-        views: 0,
-        likes: 0,
-        comments: 0,
+        views: 70,
+        likes: 23,
+        comments: 5,
       }
     }
   },[title, text])
@@ -68,7 +70,7 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
           <TextField value={text} onChange={(e:any)=>setText(e.target.value)} fullWidth multiline minRows={3} placeholder="Lorem ipsum..."/>
         </Box>
         <Box height={RECT_H} width={RECT_W}>
-          <ZoomedIn square={fakeSquare} />
+          <ZoomedIn square={previewClaimedSquare} />
         </Box>
       </DialogContent>
       <DialogActions>

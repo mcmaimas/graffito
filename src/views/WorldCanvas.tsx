@@ -3,7 +3,7 @@ import { memo, useMemo } from "react";
 import { RECT_H, RECT_W } from "../modules/core/constants";
 import CanvasStore from "../modules/state/CanvasStore";
 import CanvasSquare from '../components/squares/CanvasSquare';
-import {generateGrid, Square} from '../hooks/useGetTestWorldCanvas';
+import {getWorldCanvas, BulkSquare} from '../hooks/canvas/useGetWorldCanvas'
 
 
 const WorldCanvas = ({ frame }: { frame: string }) => {
@@ -12,7 +12,7 @@ const WorldCanvas = ({ frame }: { frame: string }) => {
   const scale = CanvasStore.scale;
 
   const grid = useMemo(() => {
-    return generateGrid()
+    return getWorldCanvas();
   },[])
 
   return (
@@ -23,9 +23,9 @@ const WorldCanvas = ({ frame }: { frame: string }) => {
         transformOrigin: "top left"
       }}
     >
-      {grid.map((row: Square[], rowIdx: number) => (
+      {grid.map((row: BulkSquare[], rowIdx: number) => (
         <>
-          {row.map((square: Square, columnIdx: number) => (
+          {row.map((square: BulkSquare, columnIdx: number) => (
             <CanvasSquare
               key={`${rowIdx}-${columnIdx}`}
               square={square}

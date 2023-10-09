@@ -4,17 +4,17 @@ import { Visibility, Forum, Recommend } from "@mui/icons-material";
 
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import CanvasStore from "../../../modules/state/CanvasStore";
-import { Square } from "../../../hooks/useGetTestWorldCanvas";
+import { ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import FadingPaperArticle from "../../FadingArticle";
 import { GRANULAR_ZOOM_MAX } from "../CanvasSquare";
 import ZoomedOut from "../ZoomedOut";
 import Preview from "./Preview";
 
-interface OccupiedSquareProps {
-  square: Square;
+interface ClaimedSquareProps {
+  square: ClaimedSquare;
 }
 
-const OccupiedSquare = ({square}: OccupiedSquareProps) => {
+const ClaimedSquare = ({square}: ClaimedSquareProps) => {
   const [selected, setSelected] = useState<boolean>(false);
   const selectSquare = useCallback(() => setSelected(true), [setSelected]);
 
@@ -29,7 +29,7 @@ const OccupiedSquare = ({square}: OccupiedSquareProps) => {
 }
 
 interface ZoomedInProps {
-  square: Square;
+  square: ClaimedSquare;
   onClick?: ()=>void;
 }
 
@@ -38,10 +38,10 @@ export const ZoomedIn = ({square, onClick}: ZoomedInProps) => {
     <Box bgcolor={LEAF_COLOR_SCHEME[square.color]} height="100%" width="100%" p={1} onClick={onClick}>
       <Box display="flex" flexDirection="column" bgcolor="white" height="100%" width="100%" borderRadius={0.5} position="relative">
         <Box flexGrow={1} overflow="hidden">
-          <Box fontWeight={600} p={1}>{square?.content?.title || `Looong title of mine that causes overflow`}</Box>
+          <Box fontWeight={600} p={1}>{square?.post?.title || `Looong title of mine that causes overflow`}</Box>
           <FadingPaperArticle >
             <p style={{padding: "8px"}}>
-              {square?.content?.content || 
+              {square?.post?.content || 
                 `
                   post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
                   post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
@@ -76,13 +76,13 @@ export const ZoomedIn = ({square, onClick}: ZoomedInProps) => {
   )
 }
 
-export default OccupiedSquare;
+export default ClaimedSquare;
 
 interface StatItem {
   icon: ReactElement;
   count: number;
 }
-const Stat = ({icon, count}: StatItem) => {
+export const Stat = ({icon, count}: StatItem) => {
   return (
     <Box display="flex" justifyContent="space-around" alignItems="center" px={0.5}>
       {icon} <Box px={0.5}/> {count}

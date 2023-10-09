@@ -1,9 +1,9 @@
-import { Square } from "../../hooks/useGetTestWorldCanvas";
+import { BulkSquare } from "../../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../theme/colors";
 import PulsingBackgroundDiv from "../PulsingBackgroundDiv";
 
 interface ZoomedOutProps {
-  square: Square;
+  square: BulkSquare;
   selected: boolean;
   onClick: ()=>void;
 }
