@@ -10,11 +10,11 @@ import { GRANULAR_ZOOM_MAX } from "../CanvasSquare";
 import ZoomedOut from "../ZoomedOut";
 import Preview from "./Preview";
 
-interface ClaimedSquareProps {
+interface ClaimedProps {
   square: ClaimedSquare;
 }
 
-const ClaimedSquare = ({square}: ClaimedSquareProps) => {
+const Claimed = ({square}: ClaimedProps) => {
   const [selected, setSelected] = useState<boolean>(false);
   const selectSquare = useCallback(() => setSelected(true), [setSelected]);
 
@@ -76,7 +76,7 @@ export const ZoomedIn = ({square, onClick}: ZoomedInProps) => {
   )
 }
 
-export default ClaimedSquare;
+export default Claimed;
 
 interface StatItem {
   icon: ReactElement;

@@ -2,8 +2,8 @@ import { Box } from "@mui/material";
 
 import { CanvasPosition, Position } from "../../modules/core/foundation";
 import { BulkSquare, ClaimedSquare, UnclaimedSquare } from "../../hooks/canvas/useGetWorldCanvas";
-import Claimed from "./claimed/ClaimedSquare";
-import Unclaimed from "./unclaimed/UnclaimedSquare";
+import Claimed from "./claimed/Claimed";
+import Unclaimed from "./unclaimed/Unclaimed";
 
 export const GRANULAR_ZOOM_MAX = 1000;
 

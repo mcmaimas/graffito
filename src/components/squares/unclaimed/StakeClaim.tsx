@@ -4,7 +4,7 @@ import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 // import EmbeddedWebistePreview from "../../EmbeddedWebsitePreview";
 import { useMemo, useState } from "react";
 // import UploadFiles from "../../UploadFiles";
-import { ZoomedIn } from "../claimed/ClaimedSquare";
+import { ZoomedIn } from "../claimed/Claimed";
 import { RECT_H, RECT_W } from "../../../modules/core/constants";
 import { Close } from "@mui/icons-material";
 

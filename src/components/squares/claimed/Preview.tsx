@@ -2,7 +2,7 @@ import { Avatar, Box, Dialog, DialogContent, DialogTitle, IconButton, Tooltip } 
 import { ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import { Close, Recommend, Visibility } from "@mui/icons-material";
-import { Stat } from "./ClaimedSquare";
+import { Stat } from "./Claimed";
 
 interface PreviewProps {
   square: ClaimedSquare;

@@ -9,11 +9,11 @@ import { useCallback, useState } from "react";
 import StakeClaim from "./StakeClaim";
 import { Add } from "@mui/icons-material";
 
-interface UnclaimedSquareProps {
+interface UnclaimedProps {
   square: UnclaimedSquare;
 }
 
-const UnclaimedSquare = ({square}: UnclaimedSquareProps) => {
+const Unclaimed = ({square}: UnclaimedProps) => {
   const [selected, setSelected] = useState<boolean>(false);
   const selectSquare = useCallback(() => setSelected(true), [setSelected]);
   return (
@@ -32,4 +32,4 @@ const UnclaimedSquare = ({square}: UnclaimedSquareProps) => {
   )
 }
 
-export default UnclaimedSquare;
+export default Unclaimed;
