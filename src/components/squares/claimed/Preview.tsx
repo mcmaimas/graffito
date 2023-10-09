@@ -2,7 +2,7 @@ import { Avatar, Box, Dialog, DialogContent, DialogTitle, IconButton, Tooltip } 
 import { ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import { Close, Recommend, Visibility } from "@mui/icons-material";
-import { Stat } from "./Claimed";
+import InteractionStatItem from "../../InteractionStatItem";
 
 interface PreviewProps {
   square: ClaimedSquare;
@@ -35,7 +35,7 @@ const Preview = ({square, open, handleClose}: PreviewProps) => {
         <Box display="flex" >
           <Box width="66%" overflow="hidden" m={2} display="flex" flexDirection="column">          
           <Box bgcolor="#FFFFFF" flexGrow={1}>
-            {square.post?.content?.text || 'post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end'} 
+            {square.post?.content.description || 'post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end'} 
             </Box>
             <Box display="flex" alignItems="center">
               <Box>
@@ -47,8 +47,8 @@ const Preview = ({square, open, handleClose}: PreviewProps) => {
                 <em>MM-DD-YYYY</em>
               </Box>
               <Box flexGrow={1} />
-              <Stat icon={<Visibility fontSize="large"/>} count={square.stats.views}/>
-            <Stat icon={<Recommend fontSize="large"/>} count={square.stats.likes}/>
+              <InteractionStatItem icon={<Visibility fontSize="large"/>} count={square.stats.views}/>
+            <InteractionStatItem icon={<Recommend fontSize="large"/>} count={square.stats.likes}/>
             </Box>
           </Box>
           <Box width="33%" flexGrow={1} m={2} p={2} >

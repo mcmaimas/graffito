@@ -4,9 +4,9 @@ import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 // import EmbeddedWebistePreview from "../../EmbeddedWebsitePreview";
 import { useMemo, useState } from "react";
 // import UploadFiles from "../../UploadFiles";
-import { ZoomedIn } from "../claimed/Claimed";
 import { RECT_H, RECT_W } from "../../../modules/core/constants";
 import { Close } from "@mui/icons-material";
+import PostPreview from "../../PostPreview";
 
 interface PreviewProps {
   square: UnclaimedSquare;
@@ -31,7 +31,7 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
         type: 'text',
         author: 'me',
         content: {
-          text: text || 'Lorem Ipsum aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end',
+          description: text || 'Lorem Ipsum aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end',
         },
         title: title || 'My Title here'
       },
@@ -72,7 +72,7 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
           <TextField value={text} onChange={(e:any)=>setText(e.target.value)} fullWidth multiline minRows={3} placeholder="Lorem ipsum..."/>
         </Box>
         <Box height={RECT_H} width={RECT_W}>
-          <ZoomedIn square={previewClaimedSquare} />
+          <PostPreview square={previewClaimedSquare} />
         </Box>
       </DialogContent>
       <DialogActions>

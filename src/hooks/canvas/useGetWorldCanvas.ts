@@ -16,13 +16,14 @@ export interface UnclaimedSquare extends BaseSquare {
   queued?: boolean;
 }
 
+export interface InteractionStats {
+  views: number;
+  likes: number;
+  comments: number;
+}
 export interface ClaimedSquare extends BaseSquare {
   post: Post;
-  stats: {
-    views: number;
-    likes: number;
-    comments: number;
-  }
+  stats: InteractionStats;
 }
 
 
