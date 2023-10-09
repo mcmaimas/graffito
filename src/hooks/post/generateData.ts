@@ -1,24 +1,42 @@
-import { Post } from "./useGetPost";
+import { Post, PostType, TextContent } from "./useGetPost";
 
 export const generatePost = (): Post => {
   const rando = Math.floor(Math.random() * 100);
   const type = rando > 66 ? 'text' : rando > 33 ? 'file' : 'link';
-  return {
-    author: "Sam",
+  const basePost = {
+    author: 'me',
     type: type,
-    content: `Random Generated Content`, 
-    title: `Random Title`
+    title: 'default title',
+    content: generateTypedContent(type)
+  }
+  return basePost as Post;
+}
+
+const generateTypedContent = (type: PostType) => {
+  return generateTextContent();
+    // if (type === 'text') {
+    //   return generateTextContent();
+    // } else if () {
+    //   return generateImageContent();
+    // } else {
+    //   return generateLinkContent();
+    // }
+}
+
+const generateTextContent = (): TextContent => {
+  return {
+    text: 'default text content'
   }
 }
 
-// const generateTextPost = () => {
-//   return ""
+// const generateImageContent = () => {
+//   return {
+    
+//   }
 // }
 
-// const generateImagePost = () => {
-//   return ""
-// }
+// const generateLinkContent = () => {
+//   return {
 
-// const generateLinkPost = () => {
-//   return ""
+//   }
 // }

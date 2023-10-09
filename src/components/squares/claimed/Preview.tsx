@@ -35,7 +35,7 @@ const Preview = ({square, open, handleClose}: PreviewProps) => {
         <Box display="flex" >
           <Box width="66%" overflow="hidden" m={2} display="flex" flexDirection="column">          
           <Box bgcolor="#FFFFFF" flexGrow={1}>
-            {square.post?.content ||  'post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end'} 
+            {square.post?.content?.text || 'post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end'} 
             </Box>
             <Box display="flex" alignItems="center">
               <Box>

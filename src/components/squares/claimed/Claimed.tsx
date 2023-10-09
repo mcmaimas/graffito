@@ -41,7 +41,7 @@ export const ZoomedIn = ({square, onClick}: ZoomedInProps) => {
           <Box fontWeight={600} p={1}>{square?.post?.title || `Looong title of mine that causes overflow`}</Box>
           <FadingPaperArticle >
             <p style={{padding: "8px"}}>
-              {square?.post?.content || 
+              {square?.post?.content.text || 
                 `
                   post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
                   post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end
