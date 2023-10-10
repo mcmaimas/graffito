@@ -29,7 +29,8 @@ export interface ClaimedSquare extends BaseSquare {
 
 
 export const getWorldCanvas = () => {
-  return generateGrid();
+  const grid = generateGrid();
+  return grid;
 }
 
 // const mockWorldCanvas: BulkSquare[][] = [

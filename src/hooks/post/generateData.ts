@@ -2,7 +2,7 @@ import { FileContent, LinkContent, Post, PostType, TextContent } from "./useGetP
 
 export const generatePost = (): Post => {
   const rando = Math.floor(Math.random() * 100);
-  const type = rando > 66 ? 'text' : rando > 33 ? 'file' : 'link';
+  const type: PostType = rando > 66 ? 'text' : rando > 33 ? 'file' : 'link';
   const basePost: Post = {
     author: 'me',
     type: type,
@@ -13,6 +13,7 @@ export const generatePost = (): Post => {
 }
 
 const generateTypedContent = (type: PostType) => {
+
     if (type === 'text') {
       return generateTextContent();
     } else if (type === 'file') {
@@ -31,14 +32,19 @@ const generateTextContent = (): TextContent => {
 const generateImageContent = (): FileContent => {
   return {
     description: 'default text description',
-    srcUrl: '',
+    srcUrl: 'https://storage.googleapis.com/molten-goal-386802.appspot.com/6494882ae3729f00b20c22d2/mtn.jpg',
   }
 }
 
 const generateLinkContent = (): LinkContent => {
-  return {
+  const rando = Math.floor(Math.random() * 100);
+  return rando % 2 === 0 ? {
     description: 'default text description',
-    linkUrl: '',
-    linkPreview: ''
+    linkUrl: 'https://www.tierracomun.net/en/home',
+    previewType: 'dynamic'
+  } : {
+    description: 'default text description',
+    linkUrl: 'https://storage.googleapis.com/molten-goal-386802.appspot.com/651188d67f3efb016cbf04ed/lessWrongPost.PNG',
+    previewType: 'static'
   }
 }

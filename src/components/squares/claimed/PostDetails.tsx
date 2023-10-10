@@ -3,14 +3,15 @@ import { ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import { Close, Recommend, Visibility } from "@mui/icons-material";
 import InteractionStatItem from "../../InteractionStatItem";
+import { FileContent } from "../../../hooks/post/useGetPost";
 
-interface PreviewProps {
+interface PostDetailsProps {
   square: ClaimedSquare;
   open: boolean;
   handleClose: ()=>void;
 }
 
-const Preview = ({square, open, handleClose}: PreviewProps) => {
+const PostDetails = ({square, open, handleClose}: PostDetailsProps) => {
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="xl" fullWidth
       PaperProps={{
@@ -34,9 +35,24 @@ const Preview = ({square, open, handleClose}: PreviewProps) => {
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
         <Box display="flex" >
           <Box width="66%" overflow="hidden" m={2} display="flex" flexDirection="column">          
-          <Box bgcolor="#FFFFFF" flexGrow={1}>
-            {square.post?.content.description || 'post content will go here aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end'} 
+          {square.post.type === 'text' && (
+            <Box bgcolor="#FFFFFF" flexGrow={1}>
+              {square.post.content.description}
             </Box>
+          )}
+          
+            
+          {square.post.type === 'file' && (
+            <Box pb={2} border="1px solid red" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+              {/* <FilePostPreview post={square.post as FilePost}/> */}
+              <img src={(square.post.content as FileContent).srcUrl} style={{width: "100%", height: "100%"}}/>
+              <Box >
+                {square.post.content.description}
+              </Box>
+            </Box>
+          )}
+            
+            
             <Box display="flex" alignItems="center">
               <Box>
                 <Tooltip title={square.post?.author}>
@@ -62,4 +78,4 @@ const Preview = ({square, open, handleClose}: PreviewProps) => {
   )
 }
 
-export default Preview;
+export default PostDetails;

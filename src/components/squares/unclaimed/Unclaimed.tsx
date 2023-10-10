@@ -22,8 +22,8 @@ const Unclaimed = ({square}: UnclaimedProps) => {
         <ZoomedOut square={square} selected={selected} onClick={()=>setSelected(false)}/>
       ) : (
         <Box display="flex" alignItems="center" justifyContent="center" bgcolor={LEAF_COLOR_SCHEME[square.color]} height="100%" width="100%" border={selected ? "1px solid black" : undefined}>
-          <IconButton onClick={selectSquare}>
-            <Add />
+          <IconButton onClick={selectSquare} style={{color: "#FFFFFF"}}>
+            <Add fontSize="large"/>
           </IconButton>
         </Box>
       )}

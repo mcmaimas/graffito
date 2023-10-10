@@ -9,10 +9,12 @@ export interface FileContent {
   srcUrl: string;
 } 
 
+// dynamic is iframe
+// static is a screenshot
 export interface LinkContent {
   description: string;
   linkUrl: string;
-  linkPreview: string;
+  previewType: 'static' | 'dynamic'
 }
 
 type Content = TextContent | FileContent | LinkContent;
