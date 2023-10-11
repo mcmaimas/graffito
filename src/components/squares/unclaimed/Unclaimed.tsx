@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, CardActionArea } from "@mui/material";
 
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import CanvasStore from "../../../modules/state/CanvasStore";
@@ -22,9 +22,11 @@ const Unclaimed = ({square}: UnclaimedProps) => {
         <ZoomedOut square={square} selected={selected} onClick={()=>setSelected(false)}/>
       ) : (
         <Box display="flex" alignItems="center" justifyContent="center" bgcolor={LEAF_COLOR_SCHEME[square.color]} height="100%" width="100%" border={selected ? "1px solid black" : undefined}>
-          <IconButton onClick={selectSquare} style={{color: "#FFFFFF"}}>
-            <Add fontSize="large"/>
-          </IconButton>
+          <CardActionArea style={{height: "100%", width: "100%"}} onClick={selectSquare}>
+            <Box style={{color: "#FFFFFF"}} display="flex" alignItems="center" justifyContent="center">
+              <Add style={{fontSize: "64px"}}/>
+            </Box>
+          </CardActionArea>
         </Box>
       )}
       <StakeClaim square={square} open={selected} handleClose={()=>setSelected(false)}/>

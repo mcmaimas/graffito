@@ -3,7 +3,7 @@ import { ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import { Close, Recommend, Visibility } from "@mui/icons-material";
 import InteractionStatItem from "../../InteractionStatItem";
-import { FileContent } from "../../../hooks/post/useGetPost";
+import { FileContent, FilePost, LinkPost, TextPost } from "../../../hooks/post/useGetPost";
 
 interface PostDetailsProps {
   square: ClaimedSquare;
@@ -35,22 +35,12 @@ const PostDetails = ({square, open, handleClose}: PostDetailsProps) => {
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
         <Box display="flex" >
           <Box width="66%" overflow="hidden" m={2} display="flex" flexDirection="column">          
-          {square.post.type === 'text' && (
-            <Box bgcolor="#FFFFFF" flexGrow={1}>
-              {square.post.content.description}
-            </Box>
-          )}
+          {square.post.type === 'text' && <TextPostDetails post={square.post as TextPost} />}
           
             
-          {square.post.type === 'file' && (
-            <Box pb={2} border="1px solid red" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-              {/* <FilePostPreview post={square.post as FilePost}/> */}
-              <img src={(square.post.content as FileContent).srcUrl} style={{width: "100%", height: "100%"}}/>
-              <Box >
-                {square.post.content.description}
-              </Box>
-            </Box>
-          )}
+          {square.post.type === 'file' && <FilePostDetails post={square.post as FilePost}/>}
+
+          {square.post.type === 'link' && <LinkPostDetails post={square.post as LinkPost}/>}
             
             
             <Box display="flex" alignItems="center">
@@ -79,3 +69,33 @@ const PostDetails = ({square, open, handleClose}: PostDetailsProps) => {
 }
 
 export default PostDetails;
+
+const TextPostDetails = ({post}: {post: TextPost}) => (
+  <Box bgcolor="#FFFFFF" flexGrow={1}>
+    {post.content.description}
+  </Box>
+)
+
+const FilePostDetails = ({post}: {post: FilePost}) => (
+  <Box pb={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+    <img src={(post.content as FileContent).srcUrl} style={{width: "100%", height: "100%"}}/>
+    <Box >
+      {post.content.description}
+    </Box>
+  </Box>
+)
+
+const LinkPostDetails = ({post}: {post: LinkPost}) => {
+  return (
+    <Box pb={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+      {post.content.previewType === 'dynamic' ? (
+        <iframe src={post.content.linkUrl}></iframe>
+      ) : (
+        <img src={post.content.linkUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+      )}
+      <Box>
+        {post.content.description}
+      </Box>
+    </Box>
+  )
+}

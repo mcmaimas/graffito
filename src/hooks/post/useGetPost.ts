@@ -1,18 +1,20 @@
 export type PostType = 'text' | 'file' | 'link';
 
-export interface TextContent {
+export interface BaseContent {
+  description?: string;
+}
+
+export interface TextContent extends BaseContent {
   description: string;
 } 
 
-export interface FileContent {
-  description: string;
+export interface FileContent extends BaseContent {
   srcUrl: string;
 } 
 
 // dynamic is iframe
 // static is a screenshot
-export interface LinkContent {
-  description: string;
+export interface LinkContent extends BaseContent {
   linkUrl: string;
   previewType: 'static' | 'dynamic'
 }
@@ -22,7 +24,7 @@ type Content = TextContent | FileContent | LinkContent;
 export interface Post {
   author: string;
   type: PostType;
-  title: string;
+  title?: string;
   content: Content;
 }
 

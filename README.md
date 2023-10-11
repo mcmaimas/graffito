@@ -1,15 +1,60 @@
 Use this flag when installing depependencies because of conflicts
 --legacy-peer-deps
 
-
-Get Material UI in this project ASAP 
 Cut Tailwind
 - tailwind is fine, but I'm just uncomfortable and slower with it
 - if it's more performant i will switch to it eventually
 
-Current Problem
-- zoom is causing a reset back to center
-- it's not respecting cursor position
-
 Good example of passing props to keyframes
 - https://www.appsloveworld.com/reactjs/100/7/how-to-pass-props-to-keyframes-in-styled-component-with-react
+
+
+Names
+- silken graffiti
+- world canvas
+- world board
+- of by for
+
+
+
+User Table
+- id
+- resource key
+- username
+- posts
+- emails
+- color preference
+- user stats 
+
+Post Table
+- id
+- resource key
+- post content
+- replies
+- likes
+- create timestamp
+- parent board id
+- parent user id
+
+Reply Table
+- id
+- resource key
+- text
+- timestamp
+- parent user id
+- parent post id
+
+Likes
+- id
+- resource ket
+- timestamp
+- parent user id
+- parent post id
+- parent reply id
+
+Board Table
+- id
+- resource key
+- dimensions
+- rules 
+- posts

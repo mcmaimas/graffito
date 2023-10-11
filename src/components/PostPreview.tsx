@@ -16,7 +16,7 @@ export const PostPreview = ({square, onClick}: PostPreviewProps) => {
     <Box bgcolor={LEAF_COLOR_SCHEME[square.color]} height="100%" width="100%" p={1} onClick={onClick}>
       <Box display="flex" flexDirection="column" bgcolor="white" height="100%" width="100%" borderRadius={0.5} position="relative">
         <Box flexGrow={1} overflow="hidden" display="flex" flexDirection="column">
-          <Box fontWeight={600} p={1}>{square.post.title || `Looong title of mine that causes overflow`}</Box>
+          <Box fontWeight={600} p={1}>{square.post?.title || `Looong title of mine that causes overflow`}</Box>
             {(square.post.type === 'text') && <TextPostPreview  post={square.post as TextPost} />}
             {(square.post.type === 'file') && <FilePostPreview  post={square.post as FilePost} />}
             { (square.post.type === 'link') && <LinkPostPreview post={square.post as LinkPost} />}

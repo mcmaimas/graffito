@@ -2,7 +2,7 @@ import { FileContent, LinkContent, Post, PostType, TextContent } from "./useGetP
 
 export const generatePost = (): Post => {
   const rando = Math.floor(Math.random() * 100);
-  const type: PostType = rando > 66 ? 'text' : rando > 33 ? 'file' : 'link';
+  const type: PostType = rando > 75 ? 'text' : rando > 50 ? 'file' : 'link';
   const basePost: Post = {
     author: 'me',
     type: type,
