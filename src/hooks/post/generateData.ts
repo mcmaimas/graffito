@@ -1,4 +1,4 @@
-import { FileContent, LinkContent, Post, PostType, TextContent } from "./useGetPost";
+import { Comment, FileContent, LinkContent, Post, PostType, TextContent } from "./useGetPost";
 
 export const generatePost = (): Post => {
   const rando = Math.floor(Math.random() * 100);
@@ -7,9 +7,23 @@ export const generatePost = (): Post => {
     author: 'me',
     type: type,
     title: 'default title',
-    content: generateTypedContent(type)
+    content: generateTypedContent(type),
+    comments: generateComments(),
   }
   return basePost;
+}
+
+const generateComments = (): Comment[] => {
+  // const rando = Math.floor(Math.random() * 15);
+  let comments: Comment[] = [];
+  for (let idx = 0; idx < 15; idx++) {
+    comments.push({
+      text: `comment ${idx}`,
+      author: `author ${idx}`,
+      timestamp: `${idx}`,
+    } as Comment)
+  }
+  return comments
 }
 
 const generateTypedContent = (type: PostType) => {
