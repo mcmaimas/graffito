@@ -49,7 +49,7 @@ interface FilePostPreviewProps {
 }
 export const FilePostPreview = ({post}: FilePostPreviewProps) => (
   <Box display="flex" alignItems="center" flexGrow={1}>
-    <img src={post.content.srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+    <img alt={post.title} src={post.content.srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
   </Box>
 )
 
@@ -58,8 +58,8 @@ interface LinkPostPreviewProps {
 }
 export const LinkPostPreview = ({post}: LinkPostPreviewProps) => {
   return post.content.previewType === 'dynamic' ? (
-    <iframe src={post.content.linkUrl}></iframe>
+    <iframe title={post.title} src={post.content.linkUrl}></iframe>
   ) : (
-    <img src={post.content.linkUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+    <img alt={post.title} src={post.content.linkUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
   ) 
 }

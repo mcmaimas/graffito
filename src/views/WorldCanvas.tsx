@@ -6,7 +6,7 @@ import CanvasSquare from '../components/squares/CanvasSquare';
 import {getWorldCanvas, BulkSquare} from '../hooks/canvas/useGetWorldCanvas'
 
 
-const WorldCanvas = ({ frame }: { frame: string }) => {
+const WorldCanvas = ({ frame, selectedSquare, setSelectedSquare }: { frame: string, selectedSquare?: BulkSquare, setSelectedSquare: (selectedSquare?: BulkSquare) => void }) => {
   const rectW = RECT_W;
   const rectH = RECT_H;
   const scale = CanvasStore.scale;
@@ -29,6 +29,8 @@ const WorldCanvas = ({ frame }: { frame: string }) => {
             <CanvasSquare
               key={`${rowIdx}-${columnIdx}`}
               square={square}
+              selectedSquare={selectedSquare}
+              setSelectedSquare={setSelectedSquare}
               left={rowIdx * rectW}
               top={columnIdx * rectH}
               width={rectW}

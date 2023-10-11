@@ -1,8 +1,11 @@
 import CanvasStore from "../../modules/state/CanvasStore";
-import { PointerEvent, useEffect, useRef, WheelEvent } from "react";
+import { PointerEvent, useEffect, useRef, useState, WheelEvent } from "react";
 import useSize from "@react-hook/size";
 import useRenderLoop from "../../modules/core/RenderLoop";
 import WorldCanvas from "../../views/WorldCanvas";
+import { BulkSquare, ClaimedSquare, UnclaimedSquare } from "../../hooks/canvas/useGetWorldCanvas";
+import PostDetails from "../../components/squares/claimed/PostDetails";
+import StakeClaim from "../../components/squares/unclaimed/StakeClaim";
 
 const wheelListener = (e: WheelEvent) => {
   const friction = 0.5;
@@ -23,6 +26,9 @@ const pointerListener = (event: PointerEvent) => {
 const CanvasRoot = () => {
   const canvas = useRef<HTMLDivElement>(null);
   const [width, height] = useSize(canvas);
+
+  const [selectedSquare, setSelectedSquare] = useState<BulkSquare>();
+
   useEffect(() => {
     if (width === 0 || height === 0) return;
     CanvasStore.initialize(width, height);
@@ -37,8 +43,17 @@ const CanvasRoot = () => {
         onPointerMove={pointerListener}
 
       >
-        <WorldCanvas frame={frame}></WorldCanvas>
+        <WorldCanvas selectedSquare={selectedSquare} setSelectedSquare={setSelectedSquare} frame={frame}></WorldCanvas>
       </div>
+      {selectedSquare && (
+        <>
+          {selectedSquare.status === 'claimed' ? (
+            <PostDetails square={selectedSquare as ClaimedSquare} open={!!selectedSquare} handleClose={()=>setSelectedSquare(undefined)}/>
+          ) : (
+            <StakeClaim square={selectedSquare as UnclaimedSquare} open={!!selectedSquare} handleClose={()=>setSelectedSquare(undefined)}/>
+          )}
+        </>
+      )}
     </div>
   );
 };

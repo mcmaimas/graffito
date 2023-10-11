@@ -1,19 +1,21 @@
-import {useCallback, useState } from "react";
+import {useCallback } from "react";
 
 import CanvasStore from "../../../modules/state/CanvasStore";
-import { ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
+import { BulkSquare, ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import ZoomedOut from "../ZoomedOut";
-import PostDetails from "./PostDetails";
 import PostPreview from "../../PostPreview";
 import { GRANULAR_ZOOM_MAX } from "../../../modules/core/constants";
 
 interface ClaimedProps {
   square: ClaimedSquare;
+  selectedSquare?: BulkSquare;
+  setSelectedSquare: (selectedSquare?: BulkSquare) => void;
 }
 
-const Claimed = ({square}: ClaimedProps) => {
-  const [selected, setSelected] = useState<boolean>(false);
-  const selectSquare = useCallback(() => setSelected(true), [setSelected]);
+const Claimed = ({square, selectedSquare, setSelectedSquare}: ClaimedProps) => {
+  const selectSquare = useCallback(() => setSelectedSquare(square), [square, setSelectedSquare]);
+
+  const selected = selectedSquare?.resourceKey === square.resourceKey;
 
   return (<>
     {(CanvasStore.camera.z > GRANULAR_ZOOM_MAX) ? (
@@ -21,7 +23,6 @@ const Claimed = ({square}: ClaimedProps) => {
     ) : (
       <PostPreview square={square} onClick={selectSquare} />
     )}
-    <PostDetails square={square} open={selected} handleClose={()=>setSelected(false)}/>
   </>)
 }
 
