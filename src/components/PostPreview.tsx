@@ -49,7 +49,12 @@ interface FilePostPreviewProps {
 }
 export const FilePostPreview = ({post}: FilePostPreviewProps) => (
   <Box display="flex" alignItems="center" flexGrow={1}>
-    <img alt={post.title} src={post.content.srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+    {post.content?.file ? (
+      <img src={URL.createObjectURL(post.content.file)}  alt={post.title}></img>
+    ) : (
+      <img alt={post.title} src={post.content.srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+    )}
+    
   </Box>
 )
 

@@ -9,17 +9,19 @@ export interface TextContent extends BaseContent {
 } 
 
 export interface FileContent extends BaseContent {
-  srcUrl: string;
+  srcUrl?: string;
+  file?: File;
 } 
 
 // dynamic is iframe
 // static is a screenshot
+export type LinkPreviewType = 'static' | 'dynamic'
 export interface LinkContent extends BaseContent {
   linkUrl: string;
-  previewType: 'static' | 'dynamic'
+  previewType: LinkPreviewType;
 }
 
-type Content = TextContent | FileContent | LinkContent;
+export type Content = TextContent | FileContent | LinkContent;
 
 export interface Comment {
   text:string;
