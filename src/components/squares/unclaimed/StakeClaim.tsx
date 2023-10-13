@@ -86,33 +86,43 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
         <Close />
       </IconButton>
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
-        {/* <Box m={2} display="flex" justifyContent="space-around" alignItems="center">
-          <UploadFiles square={square} files={files} setFiles={setFiles} />
-        </Box> */}
         <Box m={2}>
           <TextField value={title} onChange={(e:any)=>setTitle(e.target.value)} fullWidth  placeholder="Title (optional)"/>
         </Box>
         <Box m={2}>
           <TextField value={text} onChange={(e:any)=>setText(e.target.value)} fullWidth multiline minRows={3} placeholder="Lorem ipsum..."/>
         </Box>
-        <Box my={2} display="flex" width="100%">
-          <Box display="flex" alignItems="center" justifyContent="center" borderRadius="8px" bgcolor="#FFFFFFAA" width="50%" mx={3}>
-            <UploadFiles square={square} files={files} setFiles={setFiles}/>
-
+        <Box my={2} display="flex" width="100%" >
+          <Box flexGrow={1} >
+            <Box display="flex" alignItems="center" justifyContent="center" borderRadius="8px" bgcolor="#FFFFFFAA" mx={3} mb={3}>
+              <UploadFiles square={square} files={files} setFiles={setFiles}/>
+            </Box>
+            <Box display="flex" alignItems="center" justifyContent="center" borderRadius="8px" bgcolor="#FFFFFFAA" mx={3} p={2}>
+              <Box width="100%" pr={2}>
+                <OutlinedInput placeholder="Paste the website URL here" value={linkUrl} startAdornment={<Link />} onChange={(e:any) => setLinkURL(e.target.value)} fullWidth/>
+                <Box pb={2} />
+                {linkType === 'static' && (
+                  <>
+                    <OutlinedInput placeholder="Paste a link to an image" value={linkUrl} startAdornment={<Link />} onChange={(e:any) => setLinkURL(e.target.value)} fullWidth/>
+                    <Box pr={2} />
+                  </>
+                )}
+              </Box>
+              <Box display="flex" flexDirection="column" justifyContent="flex-start" flexGrow={1}>
+                <Box>
+                <ButtonGroup>
+                  <Button variant="outlined" color="primary" onClick={()=>setLinkType('dynamic')} disabled={linkType === 'dynamic'}>Dynamic</Button>
+                  <Button variant="outlined" color="primary" onClick={()=>setLinkType('static')} disabled={linkType === 'static'}>Static</Button>
+                </ButtonGroup>
+                </Box>
+              </Box>
+            </Box>
           </Box>
-          <Box display="flex" alignItems="center" justifyContent="center" borderRadius="8px" bgcolor="#FFFFFFAA" width="50%" mx={3} px={2}>
-            <OutlinedInput placeholder="Paste a link to a URL" value={linkUrl} startAdornment={<Link />} onChange={(e:any) => setLinkURL(e.target.value)} fullWidth/>
-            <ButtonGroup>
-              <Button variant="outlined" color="primary" onClick={()=>setLinkType('dynamic')} disabled={linkType === 'dynamic'}>Dynamic</Button>
-              <Button variant="outlined" color="primary" onClick={()=>setLinkType('static')} disabled={linkType === 'static'}>Static</Button>
-            </ButtonGroup>
+          <Box>
+            <Box height={RECT_H} width={RECT_W} >
+              <PostPreview square={previewClaimedSquare}/>
+            </Box>
           </Box>
-        </Box>
-        <Box display="flex" alignItems="center" justifyContent="center" width="100%" >
-        <Box height={RECT_H} width={RECT_W} >
-          
-          <PostPreview square={previewClaimedSquare}/>
-        </Box>
         </Box>
       </DialogContent>
       <DialogActions>
