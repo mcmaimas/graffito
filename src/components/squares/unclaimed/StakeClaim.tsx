@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, OutlinedInput, TextField } from "@mui/material";
+import { Box, Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, OutlinedInput, TextField } from "@mui/material";
 import { ClaimedSquare, UnclaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 // import EmbeddedWebistePreview from "../../EmbeddedWebsitePreview";
@@ -8,7 +8,7 @@ import { RECT_H, RECT_W } from "../../../modules/core/constants";
 import { Close, Link } from "@mui/icons-material";
 import PostPreview from "../../PostPreview";
 import UploadFiles from "../../UploadFiles";
-import { Content, LinkPreviewType, PostType, StaticLinkContent } from "../../../hooks/post/useGetPost";
+import { Content, DynamicLinkContent, LinkPreviewType, PostType, StaticLinkContent } from "../../../hooks/post/useGetPost";
 
 interface PreviewProps {
   square: UnclaimedSquare;
@@ -39,10 +39,14 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
     };
     if (!!linkUrl) {
       postType = 'link';
-      content = {
+      content = linkType === 'static' ? {
         linkUrl: linkUrl,
-        previewType: linkType
-      } as StaticLinkContent
+        srcUrl: linkUrl,
+        previewType: 'static'
+      } as StaticLinkContent : {
+        linkUrl: linkUrl,
+        previewType: 'dynamic',
+      } as DynamicLinkContent
     };
 
     return {
@@ -61,7 +65,7 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
         comments: 5,
       }
     }
-  },[title, text, files, linkUrl])
+  },[title, text, files, linkUrl, linkType])
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="xl" fullWidth
@@ -98,7 +102,10 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
           </Box>
           <Box display="flex" alignItems="center" justifyContent="center" borderRadius="8px" bgcolor="#FFFFFFAA" width="50%" mx={3} px={2}>
             <OutlinedInput placeholder="Paste a link to a URL" value={linkUrl} startAdornment={<Link />} onChange={(e:any) => setLinkURL(e.target.value)} fullWidth/>
-            <Button onClick={()=>setLinkType('dynamic')}>Dynamic</Button>
+            <ButtonGroup>
+              <Button variant="outlined" color="primary" onClick={()=>setLinkType('dynamic')} disabled={linkType === 'dynamic'}>Dynamic</Button>
+              <Button variant="outlined" color="primary" onClick={()=>setLinkType('static')} disabled={linkType === 'static'}>Static</Button>
+            </ButtonGroup>
           </Box>
         </Box>
         <Box display="flex" alignItems="center" justifyContent="center" width="100%" >
