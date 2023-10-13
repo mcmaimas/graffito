@@ -16,10 +16,21 @@ export interface FileContent extends BaseContent {
 // dynamic is iframe
 // static is a screenshot
 export type LinkPreviewType = 'static' | 'dynamic'
-export interface LinkContent extends BaseContent {
+export interface BaseLinkContent extends BaseContent {
   linkUrl: string;
   previewType: LinkPreviewType;
 }
+
+export interface DynamicLinkContent extends BaseLinkContent {
+  previewType: 'dynamic';
+}
+
+export interface StaticLinkContent extends BaseLinkContent {
+  srcUrl?: string;
+  previewType: 'static';
+}
+
+export type LinkContent = StaticLinkContent | DynamicLinkContent;
 
 export type Content = TextContent | FileContent | LinkContent;
 

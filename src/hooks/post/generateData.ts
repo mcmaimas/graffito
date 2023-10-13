@@ -1,4 +1,4 @@
-import { Comment, FileContent, LinkContent, Post, PostType, TextContent } from "./useGetPost";
+import { Comment, DynamicLinkContent, FileContent, LinkContent, Post, PostType, StaticLinkContent, TextContent } from "./useGetPost";
 
 export const generatePost = (): Post => {
   const rando = Math.floor(Math.random() * 100);
@@ -56,9 +56,10 @@ const generateLinkContent = (): LinkContent => {
     description: 'default text description',
     linkUrl: 'https://www.tierracomun.net/en/home',
     previewType: 'dynamic'
-  } : {
+  } as DynamicLinkContent : {
     description: 'default text description',
-    linkUrl: 'https://storage.googleapis.com/molten-goal-386802.appspot.com/651188d67f3efb016cbf04ed/lessWrongPost.PNG',
+    srcUrl: 'https://storage.googleapis.com/molten-goal-386802.appspot.com/651188d67f3efb016cbf04ed/lessWrongPost.PNG',
+    linkUrl: 'https://www.lesswrong.com/posts/D7PumeYTDPfBTp3i7/the-waluigi-effect-mega-post',
     previewType: 'static'
-  }
+  } as StaticLinkContent
 }

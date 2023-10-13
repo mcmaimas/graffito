@@ -1,22 +1,25 @@
-Use this flag when installing depependencies because of conflicts
---legacy-peer-deps
+# MOSAIC MEDIA
+.dev .io .org
+Until October 2025
 
-Cut Tailwind
+
+## Tech Debt
+
+### Fix npm issues
+- Use this flag when installing depependencies because of conflicts
+- --legacy-peer-deps
+
+### Cut Tailwind
 - tailwind is fine, but I'm just uncomfortable and slower with it
 - if it's more performant i will switch to it eventually
 
 Good example of passing props to keyframes
 - https://www.appsloveworld.com/reactjs/100/7/how-to-pass-props-to-keyframes-in-styled-component-with-react
 
-
-Names
-- silken graffiti
-- world canvas
-- world board
-- of by for
+BL00MYbloomybloomberg
 
 
-
+## DB Planning
 User Table
 - id
 - resource key

@@ -100,7 +100,7 @@ const LinkPostDetails = ({post}: {post: LinkPost}) => {
       {post.content.previewType === 'dynamic' ? (
         <iframe title={post.title} src={post.content.linkUrl} height="100%" width="100%" style={{minHeight: "500px"}}></iframe>
       ) : (
-        <img alt={post.title} src={post.content.linkUrl} style={{width: "100%", height: "100%"}}/>
+        <img alt={post.title} src={post.content.srcUrl} style={{width: "100%", height: "100%"}}/>
       )}
       <Box py={1}>
         {post.content.description}

@@ -8,7 +8,7 @@ import { RECT_H, RECT_W } from "../../../modules/core/constants";
 import { Close, Link } from "@mui/icons-material";
 import PostPreview from "../../PostPreview";
 import UploadFiles from "../../UploadFiles";
-import { Content, LinkPreviewType, PostType } from "../../../hooks/post/useGetPost";
+import { Content, LinkPreviewType, PostType, StaticLinkContent } from "../../../hooks/post/useGetPost";
 
 interface PreviewProps {
   square: UnclaimedSquare;
@@ -42,7 +42,7 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
       content = {
         linkUrl: linkUrl,
         previewType: linkType
-      }
+      } as StaticLinkContent
     };
 
     return {

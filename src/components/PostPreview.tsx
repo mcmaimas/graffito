@@ -63,8 +63,8 @@ interface LinkPostPreviewProps {
 }
 export const LinkPostPreview = ({post}: LinkPostPreviewProps) => {
   return post.content.previewType === 'dynamic' ? (
-    <iframe title={post.title} src={post.content.linkUrl}></iframe>
+    <iframe title={post.title} src={post.content.linkUrl} height="75%" width="100%"></iframe>
   ) : (
-    <img alt={post.title} src={post.content.linkUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+    <img alt={post.title} src={post.content.srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
   ) 
 }
