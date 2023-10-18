@@ -1,14 +1,13 @@
-import { Box, Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, OutlinedInput, TextField } from "@mui/material";
-import { ClaimedSquare, UnclaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
+import { Box, Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, OutlinedInput, TextField, TextareaAutosize, capitalize } from "@mui/material";
+import { UnclaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
-// import EmbeddedWebistePreview from "../../EmbeddedWebsitePreview";
-import { useMemo, useState } from "react";
-// import UploadFiles from "../../UploadFiles";
+import { useState } from "react";
 import { RECT_H, RECT_W } from "../../../modules/core/constants";
 import { Close, Link } from "@mui/icons-material";
 import PostPreview from "../../PostPreview";
 import UploadFiles from "../../UploadFiles";
-import { Content, DynamicLinkContent, LinkPreviewType, PostType, StaticLinkContent } from "../../../hooks/post/useGetPost";
+import { PostType } from "../../../hooks/post/useGetPost";
+import usePostPreview from "./usePostPreview";
 
 interface PreviewProps {
   square: UnclaimedSquare;
@@ -24,48 +23,10 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
   const [files, setFiles] = useState<FileList>({} as FileList);
   // const [filePaths, setFilePaths] = useState<string[]>([]);
   const [linkUrl, setLinkURL] = useState<string>();
-  const [linkType, setLinkType] = useState<LinkPreviewType>('dynamic');
 
-  const previewClaimedSquare: ClaimedSquare = useMemo(() => {
-    let postType: PostType = 'text';
-    let content: Content = {
-      description: text || 'Lorem Ipsum aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end',
-    }
-    if (!!files.length) {
-      postType = 'file';
-      content = {
-        file: files[0]
-      } 
-    };
-    if (!!linkUrl) {
-      postType = 'link';
-      content = linkType === 'static' ? {
-        linkUrl: linkUrl,
-        srcUrl: linkUrl,
-        previewType: 'static'
-      } as StaticLinkContent : {
-        linkUrl: linkUrl,
-        previewType: 'dynamic',
-      } as DynamicLinkContent
-    };
+  const [postType, setPostType] = useState<PostType>('text');
 
-    return {
-      resourceKey: 'rKey',
-      color: 'green',
-      status: 'claimed',
-      post: {
-        type: postType,
-        author: 'me',
-        content,
-        title: title || 'My Title here'
-      },
-      stats: {
-        views: 70,
-        likes: 23,
-        comments: 5,
-      }
-    }
-  },[title, text, files, linkUrl, linkType])
+  const previewClaimedSquare = usePostPreview({title, text, files, linkUrl, postType});
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="xl" fullWidth
@@ -74,7 +35,7 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
         boxShadow: `1px 1px 20px 1px ${square.color}`    
       }}}
     >
-      <DialogTitle>Create Post</DialogTitle>
+      <DialogTitle>Create a {capitalize(postType)} Post</DialogTitle>
       <IconButton aria-label="close" onClick={handleClose}
         sx={{
           position: 'absolute',
@@ -86,42 +47,54 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
         <Close />
       </IconButton>
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
-        <Box m={2}>
-          <TextField value={title} onChange={(e:any)=>setTitle(e.target.value)} fullWidth  placeholder="Title (optional)"/>
-        </Box>
-        <Box m={2}>
-          <TextField value={text} onChange={(e:any)=>setText(e.target.value)} fullWidth multiline minRows={3} placeholder="Lorem ipsum..."/>
-        </Box>
-        <Box my={2} display="flex" width="100%" >
-          <Box flexGrow={1} >
-            <Box display="flex" alignItems="center" justifyContent="center" borderRadius="8px" bgcolor="#FFFFFFAA" mx={3} mb={3}>
-              <UploadFiles square={square} files={files} setFiles={setFiles}/>
+
+        <Box display="flex" width="100%">
+
+          {/* LEFT SIDE */}
+          <Box flexGrow={1} display="flex" flexDirection="column">
+            {/* Title Input */}
+            <Box mx={2}>
+              <TextField value={title} onChange={(e:any)=>setTitle(e.target.value)} fullWidth  placeholder="Title (optional)"/>
             </Box>
-            <Box display="flex" alignItems="center" justifyContent="center" borderRadius="8px" bgcolor="#FFFFFFAA" mx={3} p={2}>
-              <Box width="100%" pr={2}>
-                <OutlinedInput placeholder="Paste the website URL here" value={linkUrl} startAdornment={<Link />} onChange={(e:any) => setLinkURL(e.target.value)} fullWidth/>
-                <Box pb={2} />
-                {linkType === 'static' && (
-                  <>
-                    <OutlinedInput placeholder="Paste a link to an image" value={linkUrl} startAdornment={<Link />} onChange={(e:any) => setLinkURL(e.target.value)} fullWidth/>
-                    <Box pr={2} />
-                  </>
-                )}
-              </Box>
-              <Box display="flex" flexDirection="column" justifyContent="flex-start" flexGrow={1}>
-                <Box>
-                <ButtonGroup>
-                  <Button variant="outlined" color="primary" onClick={()=>setLinkType('dynamic')} disabled={linkType === 'dynamic'}>Dynamic</Button>
-                  <Button variant="outlined" color="primary" onClick={()=>setLinkType('static')} disabled={linkType === 'static'}>Static</Button>
-                </ButtonGroup>
-                </Box>
-              </Box>
+            {/* Main Text Content Input */}
+            <Box mx={2} flexGrow={1}>
+              <TextareaAutosize value={text} onChange={(e:any)=>setText(e.target.value)} style={{height: "100%", width: "100%", padding: "16px"}} placeholder="Lorem ipsum..."/>
             </Box>
           </Box>
-          <Box>
-            <Box height={RECT_H} width={RECT_W} >
-              <PostPreview square={previewClaimedSquare}/>
+          <Box px={1} />
+          {/* RIGHT SIDE */}
+          <Box width="350px" display="flex" flexDirection="column" alignItems="center">
+            {/* Select the Post Type */}
+            <Box width="100%" pb={2}>
+              <ButtonGroup fullWidth>
+                <Button variant={postType === 'text' ? 'contained' : 'outlined'} onClick={()=>setPostType('text')}>Text</Button>
+                <Button variant={postType === 'file' ? 'contained' : 'outlined'} onClick={()=>setPostType('file')}>Image</Button>
+                <Button variant={postType === 'link' ? 'contained' : 'outlined'} onClick={()=>setPostType('link')}>Link</Button>
+              </ButtonGroup>
             </Box>
+ 
+            {/* Upload a file */}
+            {postType !== 'text' && (
+              <Box width="100%">
+                <UploadFiles square={square} files={files} setFiles={setFiles}/>
+              </Box>
+            )}
+            <Box>
+              <Box height={RECT_H} width={RECT_W} >
+                <PostPreview square={previewClaimedSquare}/>
+              </Box>
+            </Box>
+
+           {/* Set a link  */}
+           {postType === 'link' && (
+              <Box width="100%" px={2} pb={2}>
+                <Box display="flex" justifyContent="center">
+                  <Box width="8px" height="16px" bgcolor={(linkUrl && !files?.length) ? LEAF_COLOR_SCHEME["green"] : undefined} />
+                </Box>
+                <OutlinedInput placeholder="Paste a website URL here" value={linkUrl} startAdornment={<Link />} onChange={(e:any) => setLinkURL(e.target.value)} fullWidth/>
+              </Box>
+            )}
+
           </Box>
         </Box>
       </DialogContent>

@@ -2,6 +2,9 @@
 .dev .io .org
 Until October 2025
 
+TODO:
+- format the Submit Post Form
+- reformat the generated data to only include active values. No reason to send empty values tbh
 
 ## Tech Debt
 
@@ -17,6 +20,8 @@ Good example of passing props to keyframes
 - https://www.appsloveworld.com/reactjs/100/7/how-to-pass-props-to-keyframes-in-styled-component-with-react
 
 BL00MYbloomybloomberg
+
+
 
 
 ## DB Planning
