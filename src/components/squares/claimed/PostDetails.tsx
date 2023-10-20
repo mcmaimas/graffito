@@ -16,7 +16,7 @@ const PostDetails = ({square, open, handleClose}: PostDetailsProps) => {
     <Dialog open={open} onClose={handleClose} maxWidth="xl" fullWidth
       PaperProps={{
         style:{
-        boxShadow: `1px 1px 20px 1px ${square.color}`
+        boxShadow: `1px 1px 20px 1px ${LEAF_COLOR_SCHEME[square.color]}`
       }}}
     >
       <DialogTitle>{square.post?.title}</DialogTitle>

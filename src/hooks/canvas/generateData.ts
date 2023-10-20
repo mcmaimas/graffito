@@ -25,7 +25,7 @@ const generateSquare = (rowNum: number, colNum: number): BulkSquare => {
   const randomNumber = Math.floor(Math.random() * SQUARES_PER_ROW);
   const randomIdx = Math.floor(Math.random() * (color_randomizer.length));
 
-  const claimed = randomNumber === colNum;
+  const claimed = randomNumber >= (SQUARES_PER_ROW/1.1);
 
   const color: LeafColor = claimed ? color_randomizer[randomIdx] : "default";
   const post = claimed ?  generatePost() : undefined;
