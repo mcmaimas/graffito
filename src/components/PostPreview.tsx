@@ -3,7 +3,7 @@ import { ClaimedSquare } from "../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../theme/colors";
 import FadingPaperArticle from "./FadingArticle";
 import { Forum, Recommend, Visibility } from "@mui/icons-material";
-import { FilePost, LinkPost, TextPost } from "../hooks/post/useGetPost";
+import { FilePost, LinkPost, StaticLinkContent, TextPost } from "../hooks/post/useGetPost";
 import InteractionStatItem from "./InteractionStatItem";
 
 interface PostPreviewProps {
@@ -62,9 +62,22 @@ interface LinkPostPreviewProps {
   post: LinkPost;
 }
 export const LinkPostPreview = ({post}: LinkPostPreviewProps) => {
-  return post.content.previewType === 'dynamic' ? (
-    <iframe title={post.title} src={post.content.linkUrl} height="75%" width="100%"></iframe>
-  ) : (
-    <img alt={post.title} src={post.content.srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
-  ) 
+  console.log(post)
+  if (post.content.previewType === 'dynamic' && post.content.linkUrl) {
+    return <iframe title={post.title} src={post.content.linkUrl} height="75%" width="100%"></iframe>
+  }
+  if ((post.content as StaticLinkContent)?.srcUrl) {
+    return <img alt={post.title} src={(post.content as StaticLinkContent).srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+  }
+  if ((post.content as StaticLinkContent)?.file) {
+    return <img src={URL.createObjectURL((post.content as StaticLinkContent)!.file as Blob)} alt={post.title} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+  }
+
+  return <>Alert message here</>
+
 }
+
+// const DynamicLinkContentPreview = ({content}: DynamicLinkContent) => {
+//   return <iframe title={content.title} src={content.linkUrl} height="75%" width="100%"></iframe>
+//   return <>OOPS</>
+// }

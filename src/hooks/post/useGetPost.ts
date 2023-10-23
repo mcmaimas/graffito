@@ -26,6 +26,7 @@ export interface DynamicLinkContent extends BaseLinkContent {
 }
 
 export interface StaticLinkContent extends BaseLinkContent {
+  file?: File;
   srcUrl?: string;
   previewType: 'static';
 }

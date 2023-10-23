@@ -17,17 +17,14 @@ const usePostPreview = ({title, text, files, linkUrl, postType} : PostPreviewPro
     let content: Content = {
       description: text || 'Lorem Ipsum aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv cenchnbeubvh cerncjrnv aye hjubnuncineicvn cenchnbeubvh cerncjrnv end',
     }
-    if (files && !!files.length) {
-      postType = 'file';
+    if (postType === 'file') {
       content = {
-        file: files[0]
+        file: files ? files[0] : undefined
       } 
-    };
-    if (!!linkUrl && postType === 'link') {
-      postType = 'link';
-      content = (linkUrl && !files) ? {
+    } else if (postType === 'link') {
+      content = (files && !!files.length) ? {
         linkUrl: linkUrl,
-        srcUrl: linkUrl,
+        file: files ? files[0] : undefined,
         previewType: 'static'
       } as StaticLinkContent : {
         linkUrl: linkUrl,

@@ -17,11 +17,9 @@ interface PreviewProps {
 
 const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
 
-  // const [srcUrl, setSrcUrl] = useState<string>(); 
   const [title, setTitle] = useState<string>();
   const [text, setText] = useState<string>();
   const [files, setFiles] = useState<FileList>({} as FileList);
-  // const [filePaths, setFilePaths] = useState<string[]>([]);
   const [linkUrl, setLinkURL] = useState<string>();
 
   const [postType, setPostType] = useState<PostType>('text');
