@@ -22,10 +22,6 @@ TODO:
 Good example of passing props to keyframes
 - https://www.appsloveworld.com/reactjs/100/7/how-to-pass-props-to-keyframes-in-styled-component-with-react
 
-BL00MYbloomybloomberg
-
-
-
 
 ## DB Planning
 User Table
