@@ -1,3 +1,6 @@
+import useSWR from 'swr';
+import fetcher from '../fetcher'
+
 import { LeafColor} from '../../theme/colors';
 import { Post } from '../post/useGetPost';
 import { generateGrid } from './generateData';
@@ -28,7 +31,26 @@ export interface ClaimedSquare extends BaseSquare {
 
 
 
+
+interface GetProjectsVars {
+  id: string|null;
+}
+
+const useGetWorldCanvas = (vars: GetProjectsVars) => {
+  const { data, error, isLoading, mutate } = useSWR(vars.id ? `https://breezy-orange-forest.glitch.me/mosaic/${vars.id}` : undefined, fetcher)
+
+  return {
+    data: data as BulkSquare[][],
+    isLoading,
+    isError: error,
+    mutate
+  }
+}
+
+export default useGetWorldCanvas;
+
 export const getWorldCanvas = () => {
   const grid = generateGrid();
+  console.log(grid)
   return grid;
 }

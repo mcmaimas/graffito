@@ -3,7 +3,7 @@ import { PointerEvent, useEffect, useRef, useState, WheelEvent } from "react";
 import useSize from "@react-hook/size";
 import useRenderLoop from "../../modules/core/RenderLoop";
 import WorldCanvas from "../../views/WorldCanvas";
-import { BulkSquare, ClaimedSquare, UnclaimedSquare } from "../../hooks/canvas/useGetWorldCanvas";
+import useGetWorldCanvas, { BulkSquare, ClaimedSquare, UnclaimedSquare } from "../../hooks/canvas/useGetWorldCanvas";
 import PostDetails from "../../components/squares/claimed/PostDetails";
 import StakeClaim from "../../components/squares/unclaimed/StakeClaim";
 
@@ -28,6 +28,7 @@ const CanvasRoot = () => {
   const [width, height] = useSize(canvas);
 
   const [selectedSquare, setSelectedSquare] = useState<BulkSquare>();
+  const {data: grid} = useGetWorldCanvas({id: 'world'});
 
   useEffect(() => {
     if (width === 0 || height === 0) return;
@@ -43,7 +44,7 @@ const CanvasRoot = () => {
         onPointerMove={pointerListener}
 
       >
-        <WorldCanvas selectedSquare={selectedSquare} setSelectedSquare={setSelectedSquare} frame={frame}></WorldCanvas>
+        <WorldCanvas grid={grid} selectedSquare={selectedSquare} setSelectedSquare={setSelectedSquare} frame={frame}></WorldCanvas>
       </div>
       {selectedSquare && (
         <>
