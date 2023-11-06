@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
 import { MosaicPosition, Position } from "../../modules/core/foundation";
-import { ClaimedSquare } from "../../hooks/mosaic/useGetMosaic";
+import { ClaimedSquare } from "../../hooks/post/useGetMosaicSquares";
 import Claimed from "./claimed/Claimed";
 import Unclaimed from "./unclaimed/Unclaimed";
 import { SelectedSquare } from "../../modules/editor/MosaicRoot";

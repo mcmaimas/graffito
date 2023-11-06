@@ -29,11 +29,15 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
 
   const handleSubmit = useCallback(async () => {
     const payload = {
-      ...previewClaimedSquare.post,
+      ...previewClaimedSquare,
+      post: {
+        ...previewClaimedSquare.post,
+      },
       row: square.row,
       column: square.column
     }
-    await axios.post(`https://breezy-orange-forest.glitch.me/posts`, payload)
+    console.log(payload)
+    await axios.post(`https://breezy-orange-forest.glitch.me/squares`, payload)
   },[previewClaimedSquare, square])
 
   return (

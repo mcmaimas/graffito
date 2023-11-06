@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { ClaimedSquare } from "../../../hooks/mosaic/useGetMosaic";
+import { ClaimedSquare } from "../../../hooks/post/useGetMosaicSquares";
 import { Content, DynamicLinkContent, PostType, StaticLinkContent } from "../../../hooks/post/useGetPost";
 
 interface PostPreviewProps {
@@ -37,18 +37,18 @@ const usePostPreview = ({title, text, files, linkUrl, postType} : PostPreviewPro
       row: 1,
       column: 1,
       color: 'green',
-      status: 'claimed',
       post: {
         type: postType,
         author: 'me',
         content,
-        title: title || 'My Title here'
+        title: title || 'My Title here',
+        stats: {
+          views: 70,
+          likes: 23,
+          comments: 5,
+        }
       },
-      stats: {
-        views: 70,
-        likes: 23,
-        comments: 5,
-      }
+
     }
   },[title, text, files, linkUrl, postType])
 

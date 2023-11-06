@@ -9,6 +9,11 @@ export const generatePost = (): Post => {
     title: 'default title',
     content: generateTypedContent(type),
     comments: generateComments(),
+    stats: {
+      views: rando,
+      comments: rando,
+      likes: rando
+    }
   }
   return basePost;
 }

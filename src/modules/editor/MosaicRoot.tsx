@@ -4,7 +4,7 @@ import useSize from "@react-hook/size";
 import useRenderLoop from "../core/RenderLoop";
 import WorldMosaic from "../../views/WorldMosaic";
 import useGetMosaic from "../../hooks/mosaic/useGetMosaic";
-import useGetMosaicPosts from "../../hooks/post/useGetMosaicPosts";
+import useGetMosaicSquares, { ClaimedSquare } from "../../hooks/post/useGetMosaicSquares";
 import PostDetails from "../../components/squares/claimed/PostDetails";
 import StakeClaim from "../../components/squares/unclaimed/StakeClaim";
 
@@ -38,12 +38,12 @@ const MosaicRoot = () => {
 
 
   const {data: grid} = useGetMosaic({resourceKey: 'world'});
-  const {data: posts} = useGetMosaicPosts({resourceKey: 'world'});
+  const {data: squaresMap} = useGetMosaicSquares({resourceKey: 'world'});
 
 
-  const postLookup = useMemo(() => {
-    if (!selectedSquare || !posts) return undefined;
-    return posts[`${selectedSquare.row}-${selectedSquare.column}`]
+  const squareLookup = useMemo(() => {
+    if (!selectedSquare || !useGetMosaicSquares) return undefined;
+    return squaresMap[`${selectedSquare.row}-${selectedSquare.column}`]
   },[selectedSquare])
 
   useEffect(() => {
@@ -60,12 +60,12 @@ const MosaicRoot = () => {
         onPointerMove={pointerListener}
 
       >
-        <WorldMosaic grid={grid} posts={posts} selectedSquare={selectedSquare} setSelectedSquare={setSelectedSquare} frame={frame}></WorldMosaic>
+        <WorldMosaic grid={grid} squaresMap={squaresMap} selectedSquare={selectedSquare} setSelectedSquare={setSelectedSquare} frame={frame}></WorldMosaic>
       </div>
       {selectedSquare && (
         <>
-          {postLookup ? (
-            <PostDetails post={postLookup} open={!!selectedSquare} handleClose={()=>setSelectedSquare(undefined)}/>
+          {squareLookup ? (
+            <PostDetails post={(squareLookup as ClaimedSquare).post} open={!!selectedSquare} handleClose={()=>setSelectedSquare(undefined)}/>
           ) : (
             <StakeClaim square={selectedSquare} open={!!selectedSquare} handleClose={()=>setSelectedSquare(undefined)}/>
           )}

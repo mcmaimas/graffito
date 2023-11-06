@@ -1,6 +1,6 @@
 import {SQUARES_PER_ROW} from '../../modules/core/constants';
 import { LeafColor, color_randomizer } from '../../theme/colors';
-import { BulkSquare } from './useGetMosaic';
+import { BulkSquare } from '../post/useGetMosaicSquares';
 import { generatePost } from '../post/generateData';
 
 export const generateGrid = () => {
@@ -33,12 +33,6 @@ const generateSquare = (rowNum: number, colNum: number): BulkSquare => {
     row: rowNum,
     column: colNum,
     color: color,
-    status: claimed ? 'claimed' : 'unclaimed',
     post: post,
-    stats: {
-      views: randomNumber,
-      comments: randomIdx,
-      likes: randomIdx * 2
-    }
   }
 }

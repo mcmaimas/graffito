@@ -5,16 +5,17 @@ import MosaicStore from "../modules/state/MosaicStore";
 import {MosaicDetails} from '../hooks/mosaic/useGetMosaic'
 import MosaicSquare from "../components/squares/MosaicSquare";
 import { SelectedSquare } from "../modules/editor/MosaicRoot";
+import { ClaimedSquare } from "../hooks/post/useGetMosaicSquares";
 
 interface WorldMosaicProps {
   grid?: MosaicDetails;
-  posts: any;
+  squaresMap: Record<string, ClaimedSquare>;
   frame: string;
   selectedSquare?: SelectedSquare;
   setSelectedSquare: (selectedSquare?: SelectedSquare) => void;
 }
 
-const WorldMosaic = ({ grid, posts, frame, selectedSquare, setSelectedSquare }: WorldMosaicProps) => {
+const WorldMosaic = ({ grid, squaresMap, frame, selectedSquare, setSelectedSquare }: WorldMosaicProps) => {
   const rectW = RECT_W;
   const rectH = RECT_H;
   const scale = MosaicStore.scale;
@@ -32,12 +33,12 @@ const WorldMosaic = ({ grid, posts, frame, selectedSquare, setSelectedSquare }: 
         transformOrigin: "top left"
       }}
     >
-      {posts && dimArray.map((row, rowIdx) => (
+      {squaresMap && dimArray.map((row, rowIdx) => (
         <>
           {dimArray.map((col, columnIdx) => (
             <MosaicSquare
               key={`${rowIdx}-${columnIdx}`}
-              square={posts[`${rowIdx}-${columnIdx}`]}
+              square={squaresMap[`${rowIdx}-${columnIdx}`]}
               row={rowIdx}
               column={columnIdx}
               selectedSquare={selectedSquare}

@@ -40,6 +40,11 @@ export interface Comment {
   author: string;
   timestamp: string;
 }
+export interface InteractionStats {
+  views: number;
+  likes: number;
+  comments: number;
+}
 
 export interface Post {
   author: string;
@@ -47,7 +52,9 @@ export interface Post {
   title?: string;
   content: Content;
   comments?: Comment[];
+  stats: InteractionStats;
 }
+
 
 export interface TextPost extends Post {
   type: 'text';
