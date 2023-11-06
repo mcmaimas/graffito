@@ -1,8 +1,8 @@
-import CanvasStore from "../../modules/state/CanvasStore";
+import MosaicStore from "../state/MosaicStore";
 import { PropsWithChildren } from "react";
 import { inBounds } from "./math-utils";
 
-export interface CanvasPosition {
+export interface MosaicPosition {
   top: number;
   left: number;
   width: number;
@@ -15,8 +15,8 @@ export const Position = ({
   width,
   height,
   children
-}: PropsWithChildren<CanvasPosition>) => {
-  const screen = CanvasStore.screen;
+}: PropsWithChildren<MosaicPosition>) => {
+  const screen = MosaicStore.screen;
   if (
     inBounds(
       { left, top, height, width },

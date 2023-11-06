@@ -1,9 +1,9 @@
-import CanvasStore from "../../modules/state/CanvasStore";
+import MosaicStore from "../state/MosaicStore";
 import { PointerEvent, useEffect, useRef, useState, useMemo, WheelEvent } from "react";
 import useSize from "@react-hook/size";
-import useRenderLoop from "../../modules/core/RenderLoop";
-import WorldCanvas from "../../views/WorldCanvas";
-import useGetWorldCanvas from "../../hooks/mosaic/useGetMosaic";
+import useRenderLoop from "../core/RenderLoop";
+import WorldMosaic from "../../views/WorldMosaic";
+import useGetMosaic from "../../hooks/mosaic/useGetMosaic";
 import useGetMosaicPosts from "../../hooks/post/useGetMosaicPosts";
 import PostDetails from "../../components/squares/claimed/PostDetails";
 import StakeClaim from "../../components/squares/unclaimed/StakeClaim";
@@ -14,14 +14,14 @@ const wheelListener = (e: WheelEvent) => {
   const deltaX = event.deltaX * friction;
   const deltaY = event.deltaY * friction;
   if (!event.ctrlKey) {
-    CanvasStore.moveCamera(deltaX, deltaY);
+    MosaicStore.moveCamera(deltaX, deltaY);
   } else {
-    CanvasStore.zoomCamera(deltaX, deltaY);
+    MosaicStore.zoomCamera(deltaX, deltaY);
   }
 };
 
 const pointerListener = (event: PointerEvent) => {
-  CanvasStore.movePointer(event.clientX, event.clientY);
+  MosaicStore.movePointer(event.clientX, event.clientY);
 };
 
 export interface SelectedSquare {
@@ -29,15 +29,15 @@ export interface SelectedSquare {
   column: string|number;
 }
 
-const CanvasRoot = () => {
-  const canvas = useRef<HTMLDivElement>(null);
-  const [width, height] = useSize(canvas);
+const MosaicRoot = () => {
+  const mosaic = useRef<HTMLDivElement>(null);
+  const [width, height] = useSize(mosaic);
 
   const [selectedSquare, setSelectedSquare] = useState<SelectedSquare>();
 
 
 
-  const {data: grid} = useGetWorldCanvas({resourceKey: 'world'});
+  const {data: grid} = useGetMosaic({resourceKey: 'world'});
   const {data: posts} = useGetMosaicPosts({resourceKey: 'world'});
 
 
@@ -48,19 +48,19 @@ const CanvasRoot = () => {
 
   useEffect(() => {
     if (width === 0 || height === 0) return;
-    CanvasStore.initialize(width, height);
+    MosaicStore.initialize(width, height);
   }, [width, height]);
   const frame = useRenderLoop(10);
   return (
     <div className="w-full h-full">
       <div
         className="w-full h-full relative overflow-hidden overscroll-none"
-        ref={canvas}
+        ref={mosaic}
         onWheel={wheelListener}
         onPointerMove={pointerListener}
 
       >
-        <WorldCanvas grid={grid} posts={posts} selectedSquare={selectedSquare} setSelectedSquare={setSelectedSquare} frame={frame}></WorldCanvas>
+        <WorldMosaic grid={grid} posts={posts} selectedSquare={selectedSquare} setSelectedSquare={setSelectedSquare} frame={frame}></WorldMosaic>
       </div>
       {selectedSquare && (
         <>
@@ -75,4 +75,4 @@ const CanvasRoot = () => {
   );
 };
 
-export default CanvasRoot;
+export default MosaicRoot;

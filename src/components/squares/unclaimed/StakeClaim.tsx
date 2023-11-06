@@ -8,7 +8,7 @@ import UploadFiles from "../../UploadFiles";
 import { PostType } from "../../../hooks/post/useGetPost";
 import usePostPreview from "./usePostPreview";
 import axios from "axios";
-import { SelectedSquare } from "../../../modules/editor/CanvasRoot";
+import { SelectedSquare } from "../../../modules/editor/MosaicRoot";
 
 interface PreviewProps {
   square: SelectedSquare;

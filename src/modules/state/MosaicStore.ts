@@ -5,7 +5,7 @@ import {
 import { CAMERA_ANGLE, RECT_H, RECT_W } from "../core/constants";
 import { SQUARES_PER_ROW } from "../core/constants";
 
-export interface CanvasState {
+export interface MosaicState {
   shouldRender: boolean;
   pixelRatio: number; // our resolution for dip calculations
   container: {
@@ -24,7 +24,7 @@ export interface CanvasState {
     z: number;
   };
 }
-const getInitialCanvasState = (): CanvasState => {
+const getInitialMosaicState = (): MosaicState => {
   return {
     shouldRender: true,
     pixelRatio: window.devicePixelRatio || 1,
@@ -44,12 +44,12 @@ const getInitialCanvasState = (): CanvasState => {
   };
 };
 
-let canvasData = getInitialCanvasState();
+let MosaicData = getInitialMosaicState();
 
-export default class CanvasStore {
+export default class MosaicStore {
   private static get data() {
-    if (!canvasData)
-      canvasData = {
+    if (!MosaicData)
+      MosaicData = {
         shouldRender: true,
         pixelRatio: window.devicePixelRatio || 1,
         container: {
@@ -66,19 +66,19 @@ export default class CanvasStore {
           z: 0,
         },
       };
-    return canvasData;
+    return MosaicData;
   }
 
   static initialize(width: number, height: number) {
     const containerWidth = width;
     const containerHeight = height;
-    canvasData = getInitialCanvasState();
-    canvasData.pixelRatio = window.devicePixelRatio || 1;
-    canvasData.container.width = containerWidth;
-    canvasData.container.height = containerHeight;
-    canvasData.camera.x = RECT_W * (SQUARES_PER_ROW / 2);
-    canvasData.camera.y =  RECT_H * (SQUARES_PER_ROW / 2);
-    canvasData.camera.z = containerWidth / Math.tan(CAMERA_ANGLE);
+    MosaicData = getInitialMosaicState();
+    MosaicData.pixelRatio = window.devicePixelRatio || 1;
+    MosaicData.container.width = containerWidth;
+    MosaicData.container.height = containerHeight;
+    MosaicData.camera.x = RECT_W * (SQUARES_PER_ROW / 2);
+    MosaicData.camera.y =  RECT_H * (SQUARES_PER_ROW / 2);
+    MosaicData.camera.z = containerWidth / Math.tan(CAMERA_ANGLE);
   }
   public static get screen() {
     const { x, y, z } = this.camera;
@@ -90,27 +90,27 @@ export default class CanvasStore {
     return this.data.camera;
   }
   public static get scale() {
-    const { width: w, height: h } = CanvasStore.screen;
-    const { width: cw, height: ch } = CanvasStore.container;
+    const { width: w, height: h } = MosaicStore.screen;
+    const { width: cw, height: ch } = MosaicStore.container;
     return { x: cw / w, y: ch / h };
   }
   public static get shouldRender() {
-    return canvasData.shouldRender;
+    return MosaicData.shouldRender;
   }
   public static set shouldRender(value: boolean) {
-    canvasData.shouldRender = value;
+    MosaicData.shouldRender = value;
   }
 
   private static get container() {
-    return canvasData.container;
+    return MosaicData.container;
   }
 
   private static get pointer() {
-    return canvasData.pointer;
+    return MosaicData.pointer;
   }
 
   private static get aspect() {
-    return canvasData.container.width / canvasData.container.height;
+    return MosaicData.container.width / MosaicData.container.height;
   }
 
   private static isCameraInBounds(
@@ -127,8 +127,8 @@ export default class CanvasStore {
     //   angle,
     //   this.aspect
     // );
-    // const isXInBounds = x >= 0 && x <= this.data.canvas.width;
-    // const isYInBounds = y >= 0 && y <= this.data.canvas.height;
+    // const isXInBounds = x >= 0 && x <= this.data.Mosaic.width;
+    // const isYInBounds = y >= 0 && y <= this.data.Mosaic.height;
     // return isXInBounds && isYInBounds;
   }
 

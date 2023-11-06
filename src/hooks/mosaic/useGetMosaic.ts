@@ -39,7 +39,7 @@ interface GetProjectsVars {
   resourceKey: string|null;
 }
 
-const useGetWorldCanvas = (vars: GetProjectsVars) => {
+const useGetWorldMosaic = (vars: GetProjectsVars) => {
   const { data, error, isLoading, mutate } = useSWR(vars.resourceKey ? `https://breezy-orange-forest.glitch.me/mosaic/${vars.resourceKey}` : undefined, fetcher)
 
   return {
@@ -50,9 +50,9 @@ const useGetWorldCanvas = (vars: GetProjectsVars) => {
   }
 }
 
-export default useGetWorldCanvas;
+export default useGetWorldMosaic;
 
-export const getWorldCanvas = () => {
+export const getWorldMosaic = () => {
   const grid = generateGrid();
   return grid;
 }

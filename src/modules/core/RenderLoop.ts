@@ -1,4 +1,4 @@
-import CanvasStore from "../../modules/state/CanvasStore";
+import MosaicStore from "../state/MosaicStore";
 import { useEffect, useRef, useState } from "react";
 
 class RenderLoop {
@@ -45,15 +45,15 @@ export const useRenderLoop = (fps: number = 15) => {
   const [frame, setFrame] = useState("0");
   const loop = useRef<RenderLoop>(
     getRenderLoop(fps, () => {
-      if (CanvasStore.shouldRender) {
+      if (MosaicStore.shouldRender) {
         setFrame(`${performance.now()}`);
-        CanvasStore.shouldRender = false;
+        MosaicStore.shouldRender = false;
       }
     })
   );
 
   useEffect(() => {
-    CanvasStore.shouldRender = true;
+    MosaicStore.shouldRender = true;
     loop.current.start();
 
     return () => loop.current.stop();

@@ -1,12 +1,12 @@
 import { useMemo, memo} from "react";
 
 import { RECT_H, RECT_W } from "../modules/core/constants";
-import CanvasStore from "../modules/state/CanvasStore";
+import MosaicStore from "../modules/state/MosaicStore";
 import {MosaicDetails} from '../hooks/mosaic/useGetMosaic'
-import CanvasSquare from "../components/squares/CanvasSquare";
-import { SelectedSquare } from "../modules/editor/CanvasRoot";
+import MosaicSquare from "../components/squares/MosaicSquare";
+import { SelectedSquare } from "../modules/editor/MosaicRoot";
 
-interface WorldCanvasProps {
+interface WorldMosaicProps {
   grid?: MosaicDetails;
   posts: any;
   frame: string;
@@ -14,10 +14,10 @@ interface WorldCanvasProps {
   setSelectedSquare: (selectedSquare?: SelectedSquare) => void;
 }
 
-const WorldCanvas = ({ grid, posts, frame, selectedSquare, setSelectedSquare }: WorldCanvasProps) => {
+const WorldMosaic = ({ grid, posts, frame, selectedSquare, setSelectedSquare }: WorldMosaicProps) => {
   const rectW = RECT_W;
   const rectH = RECT_H;
-  const scale = CanvasStore.scale;
+  const scale = MosaicStore.scale;
 
   const dimArray = useMemo(() => {
     if (!grid) return [];
@@ -35,7 +35,7 @@ const WorldCanvas = ({ grid, posts, frame, selectedSquare, setSelectedSquare }: 
       {posts && dimArray.map((row, rowIdx) => (
         <>
           {dimArray.map((col, columnIdx) => (
-            <CanvasSquare
+            <MosaicSquare
               key={`${rowIdx}-${columnIdx}`}
               square={posts[`${rowIdx}-${columnIdx}`]}
               row={rowIdx}
@@ -56,22 +56,4 @@ const WorldCanvas = ({ grid, posts, frame, selectedSquare, setSelectedSquare }: 
   );
 };
 
-export default memo(WorldCanvas);
-
-
-      {/* {generatedData?.map((row: BulkSquare[], rowIdx: number) => (
-        <>
-          {row.map((square: BulkSquare, columnIdx: number) => (
-            <CanvasSquare
-              key={`${rowIdx}-${columnIdx}`}
-              square={square}
-              selectedSquare={selectedSquare}
-              setSelectedSquare={setSelectedSquare}
-              left={rowIdx * rectW}
-              top={columnIdx * rectH}
-              width={rectW}
-              height={rectH}
-          />
-          ))}
-        </>
-      ))} */}
+export default memo(WorldMosaic);

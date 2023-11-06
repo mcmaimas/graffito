@@ -1,9 +1,9 @@
-import CanvasRoot from "./CanvasRoot";
+import MosaicRoot from "./MosaicRoot";
 
 const Editor = () => {
   return (
     <div className="w-full h-full">
-      <CanvasRoot />
+      <MosaicRoot />
     </div>
   );
 };

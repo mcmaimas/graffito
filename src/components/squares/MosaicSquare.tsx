@@ -1,12 +1,13 @@
 import { Box } from "@mui/material";
 
-import { CanvasPosition, Position } from "../../modules/core/foundation";
+import { MosaicPosition, Position } from "../../modules/core/foundation";
 import { ClaimedSquare } from "../../hooks/mosaic/useGetMosaic";
 import Claimed from "./claimed/Claimed";
 import Unclaimed from "./unclaimed/Unclaimed";
-import { SelectedSquare } from "../../modules/editor/CanvasRoot";
+import { SelectedSquare } from "../../modules/editor/MosaicRoot";
 
-interface CanvasSquareProps extends CanvasPosition {
+
+interface MosaicSquareProps extends MosaicPosition {
   square?: SelectedSquare;
   row: string|number;
   column: string|number;
@@ -16,7 +17,7 @@ interface CanvasSquareProps extends CanvasPosition {
   setSelectedSquare: (selectedSquare?: SelectedSquare) => void;
 }
 
-const CanvasSquare = ({square, row, column, left, top, width, height, selectedSquare, setSelectedSquare}: CanvasSquareProps) => {
+const MosaicSquare = ({square, row, column, left, top, width, height, selectedSquare, setSelectedSquare}: MosaicSquareProps) => {
   return (
     <Position left={left} top={top} width={width} height={height}>  
       <Box display="flex" alignItems="center" justifyContent="center" width={`${width}px`} height={`${height}px`} >
@@ -30,4 +31,4 @@ const CanvasSquare = ({square, row, column, left, top, width, height, selectedSq
   );
 };
 
-export default CanvasSquare;
+export default MosaicSquare;

@@ -1,12 +1,12 @@
 import { Box, CardActionArea } from "@mui/material";
 
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
-import CanvasStore from "../../../modules/state/CanvasStore";
+import MosaicStore from "../../../modules/state/MosaicStore";
 import ZoomedOut from "../ZoomedOut";
 import { useCallback } from "react";
 import { Add } from "@mui/icons-material";
 import { GRANULAR_ZOOM_MAX } from "../../../modules/core/constants";
-import { SelectedSquare } from "../../../modules/editor/CanvasRoot";
+import { SelectedSquare } from "../../../modules/editor/MosaicRoot";
 
 interface UnclaimedProps {
   row: string|number;
@@ -24,7 +24,7 @@ const Unclaimed = ({row, column, selectedSquare, setSelectedSquare}: UnclaimedPr
   const selectSquare = useCallback(() => setSelectedSquare({row, column}), [row, column, setSelectedSquare]);
   return (
     <>
-      {(CanvasStore.camera.z > GRANULAR_ZOOM_MAX) ? (
+      {(MosaicStore.camera.z > GRANULAR_ZOOM_MAX) ? (
         <ZoomedOut color={UNCALIMED_COLOR} selected={selected} onClick={()=>setSelectedSquare(undefined)}/>
       ) : (
         <Box display="flex" alignItems="center" justifyContent="center" bgcolor={LEAF_COLOR_SCHEME[UNCALIMED_COLOR]} height="100%" width="100%" border={selected ? "1px solid black" : undefined}>
