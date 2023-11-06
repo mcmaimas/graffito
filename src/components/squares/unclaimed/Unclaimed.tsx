@@ -2,29 +2,32 @@ import { Box, CardActionArea } from "@mui/material";
 
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import CanvasStore from "../../../modules/state/CanvasStore";
-import { BulkSquare, UnclaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import ZoomedOut from "../ZoomedOut";
 import { useCallback } from "react";
 import { Add } from "@mui/icons-material";
 import { GRANULAR_ZOOM_MAX } from "../../../modules/core/constants";
+import { SelectedSquare } from "../../../modules/editor/CanvasRoot";
 
 interface UnclaimedProps {
-  square: UnclaimedSquare;
-  selectedSquare?: BulkSquare;
-  setSelectedSquare: (selectedSquare?: BulkSquare) => void;
+  row: string|number;
+  column: string|number;
+  selectedSquare?: SelectedSquare;
+  setSelectedSquare: (selectedSquare?: SelectedSquare) => void;
 }
 
-const Unclaimed = ({square, selectedSquare, setSelectedSquare}: UnclaimedProps) => {
-  
-  const selected = selectedSquare?.resourceKey === square.resourceKey;
+const UNCALIMED_COLOR = "default";
 
-  const selectSquare = useCallback(() => setSelectedSquare(square), [square, setSelectedSquare]);
+const Unclaimed = ({row, column, selectedSquare, setSelectedSquare}: UnclaimedProps) => {
+  
+  const selected = selectedSquare?.row === row && selectedSquare.column === column;
+
+  const selectSquare = useCallback(() => setSelectedSquare({row, column}), [row, column, setSelectedSquare]);
   return (
     <>
       {(CanvasStore.camera.z > GRANULAR_ZOOM_MAX) ? (
-        <ZoomedOut square={square} selected={selected} onClick={()=>setSelectedSquare(undefined)}/>
+        <ZoomedOut color={UNCALIMED_COLOR} selected={selected} onClick={()=>setSelectedSquare(undefined)}/>
       ) : (
-        <Box display="flex" alignItems="center" justifyContent="center" bgcolor={LEAF_COLOR_SCHEME[square.color]} height="100%" width="100%" border={selected ? "1px solid black" : undefined}>
+        <Box display="flex" alignItems="center" justifyContent="center" bgcolor={LEAF_COLOR_SCHEME[UNCALIMED_COLOR]} height="100%" width="100%" border={selected ? "1px solid black" : undefined}>
           <CardActionArea style={{height: "100%", width: "100%"}} onClick={selectSquare}>
             <Box style={{color: "#FFFFFF"}} display="flex" alignItems="center" justifyContent="center">
               <Add style={{fontSize: "64px"}}/>

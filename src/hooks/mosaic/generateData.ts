@@ -1,6 +1,6 @@
 import {SQUARES_PER_ROW} from '../../modules/core/constants';
 import { LeafColor, color_randomizer } from '../../theme/colors';
-import { BulkSquare } from './useGetWorldCanvas';
+import { BulkSquare } from './useGetMosaic';
 import { generatePost } from '../post/generateData';
 
 export const generateGrid = () => {
@@ -8,7 +8,6 @@ export const generateGrid = () => {
   for(let i = 0; i < SQUARES_PER_ROW; i++) {
     grid[i] = genereateRow(i);
   }
-  console.log(grid)
   return grid;
 }
 
@@ -31,6 +30,8 @@ const generateSquare = (rowNum: number, colNum: number): BulkSquare => {
   const post = claimed ?  generatePost() : undefined;
   return {
     resourceKey: `${rowNum}-${colNum}`,
+    row: rowNum,
+    column: colNum,
     color: color,
     status: claimed ? 'claimed' : 'unclaimed',
     post: post,

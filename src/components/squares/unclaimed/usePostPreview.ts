@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
+import { ClaimedSquare } from "../../../hooks/mosaic/useGetMosaic";
 import { Content, DynamicLinkContent, PostType, StaticLinkContent } from "../../../hooks/post/useGetPost";
 
 interface PostPreviewProps {
@@ -34,6 +34,8 @@ const usePostPreview = ({title, text, files, linkUrl, postType} : PostPreviewPro
 
     return {
       resourceKey: 'rKey',
+      row: 1,
+      column: 1,
       color: 'green',
       status: 'claimed',
       post: {

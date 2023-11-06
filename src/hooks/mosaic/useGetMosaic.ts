@@ -11,6 +11,8 @@ type SquareStatus = 'claimed' | 'unclaimed';
 // Instead of isAvailable, we'll attach a post object of some sort
 export interface BaseSquare {
   resourceKey: string;
+  row: string|number;
+  column: string|number;
   color: LeafColor;
   status: SquareStatus;
 }
@@ -29,18 +31,19 @@ export interface ClaimedSquare extends BaseSquare {
   stats: InteractionStats;
 }
 
-
-
+export interface MosaicDetails {
+  dimensions: number;
+}
 
 interface GetProjectsVars {
-  id: string|null;
+  resourceKey: string|null;
 }
 
 const useGetWorldCanvas = (vars: GetProjectsVars) => {
-  const { data, error, isLoading, mutate } = useSWR(vars.id ? `https://breezy-orange-forest.glitch.me/mosaic/${vars.id}` : undefined, fetcher)
+  const { data, error, isLoading, mutate } = useSWR(vars.resourceKey ? `https://breezy-orange-forest.glitch.me/mosaic/${vars.resourceKey}` : undefined, fetcher)
 
   return {
-    data: data as BulkSquare[][],
+    data: data as MosaicDetails,
     isLoading,
     isError: error,
     mutate
@@ -51,6 +54,5 @@ export default useGetWorldCanvas;
 
 export const getWorldCanvas = () => {
   const grid = generateGrid();
-  console.log(grid)
   return grid;
 }

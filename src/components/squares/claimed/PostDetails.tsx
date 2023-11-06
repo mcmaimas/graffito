@@ -1,25 +1,25 @@
 import { Avatar, Box, Button, Dialog, DialogContent, DialogTitle, IconButton, OutlinedInput, Tooltip } from "@mui/material";
-import { ClaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
+// import { ClaimedSquare } from "../../../hooks/mosaic/useGetMosaic";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import { Close, OpenInBrowser, Recommend, Visibility } from "@mui/icons-material";
 import InteractionStatItem from "../../InteractionStatItem";
-import { FileContent, FilePost, LinkPost, TextPost } from "../../../hooks/post/useGetPost";
+import { FileContent, FilePost, LinkPost, Post, TextPost } from "../../../hooks/post/useGetPost";
 
 interface PostDetailsProps {
-  square: ClaimedSquare;
+  post: Post;
   open: boolean;
   handleClose: ()=>void;
 }
 
-const PostDetails = ({square, open, handleClose}: PostDetailsProps) => {
+const PostDetails = ({post, open, handleClose}: PostDetailsProps) => {
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="xl" fullWidth
       PaperProps={{
         style:{
-        boxShadow: `1px 1px 20px 1px ${LEAF_COLOR_SCHEME[square.color]}`
+        // boxShadow: `1px 1px 20px 1px ${LEAF_COLOR_SCHEME[color]}`
       }}}
     >
-      <DialogTitle>{square.post?.title}</DialogTitle>
+      <DialogTitle>{post?.title}</DialogTitle>
       <IconButton
         aria-label="close"
         onClick={handleClose}
@@ -35,31 +35,31 @@ const PostDetails = ({square, open, handleClose}: PostDetailsProps) => {
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
         <Box display="flex" overflow="hidden">
           <Box width="66%" overflow="hidden" m={2} display="flex" flexDirection="column">          
-          {square.post.type === 'text' && <TextPostDetails post={square.post as TextPost} />}
+          {post.type === 'text' && <TextPostDetails post={post as TextPost} />}
           
             
-          {square.post.type === 'file' && <FilePostDetails post={square.post as FilePost}/>}
+          {post.type === 'file' && <FilePostDetails post={post as FilePost}/>}
 
-          {square.post.type === 'link' && <LinkPostDetails post={square.post as LinkPost}/>}
+          {post.type === 'link' && <LinkPostDetails post={post as LinkPost}/>}
             
             
             <Box display="flex" alignItems="center">
               <Box>
-                <Tooltip title={square.post?.author}>
-                <Avatar>{square.post?.author.substring(0,1)}</Avatar>
+                <Tooltip title={post?.author}>
+                <Avatar>{post?.author.substring(0,1)}</Avatar>
                 </Tooltip>
               </Box>
               <Box px={1}>
                 <em>MM-DD-YYYY</em>
               </Box>
               <Box flexGrow={1} />
-              <InteractionStatItem icon={<Visibility fontSize="large"/>} count={square.stats.views}/>
-            <InteractionStatItem icon={<Recommend fontSize="large"/>} count={square.stats.likes}/>
+              <InteractionStatItem icon={<Visibility fontSize="large"/>} count={0}/>
+            <InteractionStatItem icon={<Recommend fontSize="large"/>} count={0}/>
             </Box>
           </Box>
           <Box width="33%" flexGrow={1} m={2} p={2} display="flex" flexDirection="column" >
             <Box height="500px" overflow="auto">
-            {square.post.comments?.map((comment) => (
+            {post.comments?.map((comment) => (
               <Box bgcolor="#FFFFFF" borderRadius="4px" mb={2} p={2}>{comment.text}</Box>
             ))}
             </Box>

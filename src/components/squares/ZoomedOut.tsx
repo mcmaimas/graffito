@@ -1,12 +1,11 @@
-import { BulkSquare } from "../../hooks/canvas/useGetWorldCanvas";
-import { LEAF_COLOR_SCHEME } from "../../theme/colors";
+import { LEAF_COLOR_SCHEME, LeafColor } from "../../theme/colors";
 import PulsingBackgroundDiv from "../PulsingBackgroundDiv";
 
 interface ZoomedOutProps {
-  square: BulkSquare;
+  color: LeafColor;
   selected: boolean;
   onClick: ()=>void;
 }
-const ZoomedOut = ({square, selected, onClick}: ZoomedOutProps) => <PulsingBackgroundDiv leaf={LEAF_COLOR_SCHEME[square.color]} selected={selected} onClick={onClick}/>;
+const ZoomedOut = ({color, selected, onClick}: ZoomedOutProps) => <PulsingBackgroundDiv leaf={LEAF_COLOR_SCHEME[color]} selected={selected} onClick={onClick}/>;
 
 export default ZoomedOut

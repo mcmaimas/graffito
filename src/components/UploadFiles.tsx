@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Box, IconButton } from "@mui/material";
-import { UnclaimedSquare } from "../hooks/canvas/useGetWorldCanvas";
 import { Close, UploadFile } from "@mui/icons-material";
 import { LEAF_COLOR_SCHEME } from "../theme/colors";
 
@@ -11,7 +10,7 @@ import { LEAF_COLOR_SCHEME } from "../theme/colors";
 // }
 
 
-const UploadFiles: FC<{square: UnclaimedSquare, files: FileList, setFiles: (files: FileList) => void }> = ({square, files, setFiles}) => {
+const UploadFiles: FC<{files: FileList, setFiles: (files: FileList) => void }> = ({files, setFiles}) => {
 
   const fileUploaded = files && !!files.length;
 

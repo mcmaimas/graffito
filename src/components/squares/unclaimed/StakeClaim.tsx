@@ -1,16 +1,17 @@
 import { Box, Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, OutlinedInput, TextField, TextareaAutosize, capitalize } from "@mui/material";
-import { UnclaimedSquare } from "../../../hooks/canvas/useGetWorldCanvas";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { RECT_H, RECT_W } from "../../../modules/core/constants";
 import { Close, Link } from "@mui/icons-material";
 import PostPreview from "../../PostPreview";
 import UploadFiles from "../../UploadFiles";
 import { PostType } from "../../../hooks/post/useGetPost";
 import usePostPreview from "./usePostPreview";
+import axios from "axios";
+import { SelectedSquare } from "../../../modules/editor/CanvasRoot";
 
 interface PreviewProps {
-  square: UnclaimedSquare;
+  square: SelectedSquare;
   open: boolean;
   handleClose: ()=>void;
 }
@@ -26,11 +27,20 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
 
   const previewClaimedSquare = usePostPreview({title, text, files, linkUrl, postType});
 
+  const handleSubmit = useCallback(async () => {
+    const payload = {
+      ...previewClaimedSquare.post,
+      row: square.row,
+      column: square.column
+    }
+    await axios.post(`https://breezy-orange-forest.glitch.me/posts`, payload)
+  },[previewClaimedSquare, square])
+
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="xl" fullWidth
       PaperProps={{
         style:{
-        boxShadow: `1px 1px 20px 1px ${square.color}`    
+        // boxShadow: `1px 1px 20px 1px ${square.color}`    
       }}}
     >
       <DialogTitle>Create a {capitalize(postType)} Post</DialogTitle>
@@ -74,7 +84,7 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
             {/* Upload a file */}
             {postType !== 'text' && (
               <Box width="100%">
-                <UploadFiles square={square} files={files} setFiles={setFiles}/>
+                <UploadFiles files={files} setFiles={setFiles}/>
               </Box>
             )}
             <Box>
@@ -97,7 +107,7 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button>Post</Button>
+        <Button onClick={handleSubmit}>Post</Button>
       </DialogActions>
     </Dialog>
   )

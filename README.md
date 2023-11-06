@@ -5,8 +5,7 @@ Until October 2025
 TODO:
 - format the Submit Post Form
 - - instead of an alert section, if they dont have content show the alert in the preview area
-
-
+- swap canvas naming for mosaic
 - reformat the generated data to only include active values. No reason to send empty values tbh
 
 ## Tech Debt
