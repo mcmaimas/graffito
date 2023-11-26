@@ -5,7 +5,7 @@ import { RECT_H, RECT_W } from "../../../modules/core/constants";
 import { Close, Link } from "@mui/icons-material";
 import PostPreview from "../../PostPreview";
 import UploadFiles from "../../UploadFiles";
-import { PostType } from "../../../hooks/post/useGetPost";
+import { LinkContent, PostType } from "../../../hooks/post/useGetPost";
 import usePostPreview from "./usePostPreview";
 import axios from "axios";
 import { SelectedSquare } from "../../../modules/editor/MosaicRoot";
@@ -48,16 +48,19 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
     // /square/upload/:id
     
     // await axios.post(`https://breezy-orange-forest.glitch.me/squares/upload/${(claimedSquare as ClaimedSquare)._id}`, payload)
-    const formData = new FormData();
-            const fileList: FileList = files;
-            // Append all of the files to the correct field
-            Object.entries(fileList).forEach(([key, file]) => {
-              formData.append('files', file)
-            });
+    if ((postType === 'file' || (previewClaimedSquare.post.content as LinkContent).previewType === 'static') && files && files.length > 0 ) {
+      const formData = new FormData();
+      const fileList: FileList = files;
+      // Append all of the files to the correct field
+      Object.entries(fileList).forEach(([key, file]) => {
+        formData.append('files', file)
+      });
 
-            // Send it and wait for the response because the new response will have the updated prompt
-            const {data: updatedClaim} = await axios.post(`https://breezy-orange-forest.glitch.me/squares/upload/${(claimedSquare as ClaimedSquare)._id}`, formData, { headers: headers });
-            console.log(updatedClaim)
+      // Send it and wait for the response because the new response will have the updated prompt
+      const {data: updatedClaim} = await axios.post(`https://breezy-orange-forest.glitch.me/squares/upload/${(claimedSquare as ClaimedSquare)._id}`, formData, { headers: headers });
+      console.log(updatedClaim)
+    }
+
 
   },[previewClaimedSquare, square])
 

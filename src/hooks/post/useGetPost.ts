@@ -19,11 +19,13 @@ export interface FileContent extends BaseContent {
 export type LinkPreviewType = 'static' | 'dynamic'
 export interface BaseLinkContent extends BaseContent {
   linkUrl: string;
+  filePaths?: string[];
   previewType: LinkPreviewType;
 }
 
 export interface DynamicLinkContent extends BaseLinkContent {
   previewType: 'dynamic';
+  srcUrl?: string;
 }
 
 export interface StaticLinkContent extends BaseLinkContent {

@@ -70,6 +70,9 @@ export const LinkPostPreview = ({post}: LinkPostPreviewProps) => {
   if (post.content.previewType === 'dynamic' && post.content.linkUrl) {
     return <iframe title={post.title} src={post.content.linkUrl} height="75%" width="100%"></iframe>
   }
+  if (post.content?.filePaths && post.content?.filePaths[0]) {
+    return <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title}/>
+  }
   if ((post.content as StaticLinkContent)?.srcUrl) {
     return <img alt={post.title} src={(post.content as StaticLinkContent).srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
   }
