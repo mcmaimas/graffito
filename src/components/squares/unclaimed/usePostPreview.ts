@@ -33,6 +33,7 @@ const usePostPreview = ({title, text, files, linkUrl, postType} : PostPreviewPro
     };
 
     return {
+      _id: 'previewId',
       resourceKey: 'rKey',
       row: 1,
       column: 1,

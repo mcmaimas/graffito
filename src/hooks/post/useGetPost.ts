@@ -10,6 +10,7 @@ export interface TextContent extends BaseContent {
 
 export interface FileContent extends BaseContent {
   srcUrl?: string;
+  filePaths?: string[];
   file?: File;
 } 
 

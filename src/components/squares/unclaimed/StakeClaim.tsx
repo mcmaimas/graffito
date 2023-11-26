@@ -9,11 +9,17 @@ import { PostType } from "../../../hooks/post/useGetPost";
 import usePostPreview from "./usePostPreview";
 import axios from "axios";
 import { SelectedSquare } from "../../../modules/editor/MosaicRoot";
+import { ClaimedSquare } from "../../../hooks/post/useGetMosaicSquares";
 
 interface PreviewProps {
   square: SelectedSquare;
   open: boolean;
   handleClose: ()=>void;
+}
+
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "accepts": "multipart/form-data"
 }
 
 const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
@@ -29,7 +35,6 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
 
   const handleSubmit = useCallback(async () => {
     const payload = {
-      ...previewClaimedSquare,
       post: {
         ...previewClaimedSquare.post,
       },
@@ -37,7 +42,23 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
       column: square.column
     }
     console.log(payload)
-    await axios.post(`https://breezy-orange-forest.glitch.me/squares`, payload)
+    const {data: claimedSquare} = await axios.post(`https://breezy-orange-forest.glitch.me/squares`, payload)
+    console.log(claimedSquare as ClaimedSquare)
+    // Uploading file happens separately
+    // /square/upload/:id
+    
+    // await axios.post(`https://breezy-orange-forest.glitch.me/squares/upload/${(claimedSquare as ClaimedSquare)._id}`, payload)
+    const formData = new FormData();
+            const fileList: FileList = files;
+            // Append all of the files to the correct field
+            Object.entries(fileList).forEach(([key, file]) => {
+              formData.append('files', file)
+            });
+
+            // Send it and wait for the response because the new response will have the updated prompt
+            const {data: updatedClaim} = await axios.post(`https://breezy-orange-forest.glitch.me/squares/upload/${(claimedSquare as ClaimedSquare)._id}`, formData, { headers: headers });
+            console.log(updatedClaim)
+
   },[previewClaimedSquare, square])
 
   return (

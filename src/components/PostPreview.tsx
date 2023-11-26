@@ -47,16 +47,21 @@ export const TextPostPreview = ({post}: TextPostPreviewProps) => (
 interface FilePostPreviewProps {
   post: FilePost;
 }
-export const FilePostPreview = ({post}: FilePostPreviewProps) => (
+export const FilePostPreview = ({post}: FilePostPreviewProps) => {
+  
+  
+
+  return  (
   <Box display="flex" alignItems="center" flexGrow={1}>
-    {post.content?.file ? (
-      <img src={URL.createObjectURL(post.content.file)}  alt={post.title}></img>
-    ) : (
-      <img alt={post.title} src={post.content.srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>
-    )}
+    {(post.content?.filePaths && post.content?.filePaths[0]) ? (
+      <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title}/>
+    ) : post.content.file ? (
+      <img alt={post.title} src={URL.createObjectURL(post.content.file)} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+    ) : <>Nope</>}
     
   </Box>
 )
+    }
 
 interface LinkPostPreviewProps {
   post: LinkPost;
