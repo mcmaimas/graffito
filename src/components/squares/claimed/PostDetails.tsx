@@ -3,7 +3,7 @@ import { Avatar, Box, Button, Dialog, DialogContent, DialogTitle, IconButton, Ou
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import { Close, OpenInBrowser, Recommend, Visibility } from "@mui/icons-material";
 import InteractionStatItem from "../../InteractionStatItem";
-import { FileContent, FilePost, LinkPost, Post, TextPost } from "../../../hooks/post/useGetPost";
+import { FilePost, LinkPost, Post, TextPost } from "../../../hooks/post/useGetPost";
 
 interface PostDetailsProps {
   post: Post;
@@ -84,7 +84,12 @@ const TextPostDetails = ({post}: {post: TextPost}) => (
 
 const FilePostDetails = ({post}: {post: FilePost}) => (
   <Box pb={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-    <img alt={post.title} src={(post.content as FileContent).srcUrl} style={{width: "100%", height: "100%"}}/>
+    {/* <img alt={post.title} src={(post.content as FileContent).srcUrl} style={{width: "100%", height: "100%"}}/> */}
+    {(post.content?.filePaths && post.content?.filePaths[0]) ? (
+      <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title}/>
+    ) : post.content.file ? (
+      <img alt={post.title} src={URL.createObjectURL(post.content.file)} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+    ) : <>Nope</>}
     <Box >
       {post.content.description}
     </Box>

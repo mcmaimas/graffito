@@ -3,12 +3,19 @@
 Until October 2025
 
 TODO:
-
-- - instead of an alert section, if they dont have content show the alert in the preview area
-- reformat the generated data to only include active values. No reason to send empty values tbh
-- figure out the concept of squares and post
-- - posts contain content and info about interaction with htat content
-- - square is a wrapper that contains row and column info
+- Setup all post types
+- - Plain Text Post works
+- - Image Post
+- - Link Post
+- Scrolling is f'd. It's laggy and not always centered
+- Colors. Do I set them on the backend or should I have a function on the frontend
+...pause on actual feature development
+- refactor to vite 
+- cut tailwind
+- make repo private
+- host the UI in firebase so it's live
+...
+- Comment/replies
 
 ## Tech Debt
 
@@ -23,6 +30,8 @@ TODO:
 Good example of passing props to keyframes
 - https://www.appsloveworld.com/reactjs/100/7/how-to-pass-props-to-keyframes-in-styled-component-with-react
 
+
+<!-- This is outdated. Need to update this -->
 
 ## DB Planning
 User Table
