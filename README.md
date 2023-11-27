@@ -4,17 +4,18 @@ Until October 2025
 
 TODO:
 - Setup all post types
-- - Plain Text Post works
-- - Image Post
-- - Link Post
-- Scrolling is f'd. It's laggy and not always centered
+- - DONE: Text Post
+- - DONE: Image Post
+- - DONE: Link Post
 - Colors. Do I set them on the backend or should I have a function on the frontend
 ...pause on actual feature development
-- refactor to vite 
-- cut tailwind
+- refactor to vite: This is more of a pain than I thought
 - make repo private
+- DONE: cut tailwind
+
 - host the UI in firebase so it's live
 ...
+- Scrolling is f'd. It's laggy and not always centered
 - Comment/replies
 
 ## Tech Debt
@@ -26,6 +27,9 @@ TODO:
 ### Cut Tailwind
 - tailwind is fine, but I'm just uncomfortable and slower with it
 - if it's more performant i will switch to it eventually
+
+### Finf diff package
+- npm i @react-hook/size
 
 Good example of passing props to keyframes
 - https://www.appsloveworld.com/reactjs/100/7/how-to-pass-props-to-keyframes-in-styled-component-with-react

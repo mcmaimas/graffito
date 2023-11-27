@@ -1,10 +1,11 @@
+import { Box } from "@mui/material";
 import MosaicRoot from "./MosaicRoot";
 
 const Editor = () => {
   return (
-    <div className="w-full h-full">
+    <Box width="100%" height="100%">
       <MosaicRoot />
-    </div>
+    </Box>
   );
 };
 

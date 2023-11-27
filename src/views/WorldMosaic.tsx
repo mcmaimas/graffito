@@ -6,6 +6,7 @@ import {MosaicDetails} from '../hooks/mosaic/useGetMosaic'
 import MosaicSquare from "../components/squares/MosaicSquare";
 import { SelectedSquare } from "../modules/editor/MosaicRoot";
 import { ClaimedSquare } from "../hooks/post/useGetMosaicSquares";
+import { Box } from "@mui/material";
 
 interface WorldMosaicProps {
   grid?: MosaicDetails;
@@ -26,13 +27,13 @@ const WorldMosaic = ({ grid, squaresMap, frame, selectedSquare, setSelectedSquar
   },[grid])
 
   return (
-    <div
-      className="w-full h-full"
-      style={{
+
+      <Box width="100%" height="100%" 
+        style={{
         transform: `scale(${(scale.x, scale.y)})`,
         transformOrigin: "top left"
-      }}
-    >
+        }}
+      >
       {squaresMap && dimArray.map((row, rowIdx) => (
         <>
           {dimArray.map((col, columnIdx) => (
@@ -52,8 +53,8 @@ const WorldMosaic = ({ grid, squaresMap, frame, selectedSquare, setSelectedSquar
         </>
       ))}
         
-
-    </div>
+        </Box>
+    
   );
 };
 

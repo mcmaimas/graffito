@@ -7,6 +7,7 @@ import useGetMosaic from "../../hooks/mosaic/useGetMosaic";
 import useGetMosaicSquares, { ClaimedSquare } from "../../hooks/post/useGetMosaicSquares";
 import PostDetails from "../../components/squares/claimed/PostDetails";
 import StakeClaim from "../../components/squares/unclaimed/StakeClaim";
+import { Box } from "@mui/material";
 
 const wheelListener = (e: WheelEvent) => {
   const friction = 0.5;
@@ -52,16 +53,20 @@ const MosaicRoot = () => {
   }, [width, height]);
   const frame = useRenderLoop(10);
   return (
-    <div className="w-full h-full">
-      <div
+    <Box width="100%" height="100%">
+      <Box width="100%" height="100%" position="relative" overflow="hidden" 
+      ref={mosaic}
+      onWheel={wheelListener}
+      onPointerMove={pointerListener}>
+      {/* <div
         className="w-full h-full relative overflow-hidden overscroll-none"
         ref={mosaic}
         onWheel={wheelListener}
         onPointerMove={pointerListener}
 
-      >
+      > */}
         <WorldMosaic grid={grid} squaresMap={squaresMap} selectedSquare={selectedSquare} setSelectedSquare={setSelectedSquare} frame={frame}></WorldMosaic>
-      </div>
+        </Box>
       {selectedSquare && (
         <>
           {squareLookup ? (
@@ -71,7 +76,7 @@ const MosaicRoot = () => {
           )}
         </>
       )}
-    </div>
+    </Box>
   );
 };
 

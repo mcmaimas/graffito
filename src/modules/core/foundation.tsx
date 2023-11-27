@@ -1,6 +1,7 @@
 import MosaicStore from "../state/MosaicStore";
 import { PropsWithChildren } from "react";
 import { inBounds } from "./math-utils";
+import { Box } from "@mui/material";
 
 export interface MosaicPosition {
   top: number;
@@ -29,15 +30,12 @@ export const Position = ({
     )
   ) {
     return (
-      <div
-        className="absolute inline-block"
-        style={{
+      <Box position="absolute" display="inline-block" style={{
           left: `${left - screen.x}px`,
           top: `${top - screen.y}px`
-        }}
-      >
+        }}>
         {children}
-      </div>
+      </Box>
     );
   } else return null;
 };
