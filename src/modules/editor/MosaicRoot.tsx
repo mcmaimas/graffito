@@ -1,5 +1,4 @@
-import MosaicStore from "../state/MosaicStore";
-import { useContext, PointerEvent, useEffect, useRef, useState, useMemo, WheelEvent } from "react";
+import { useContext, useCallback, PointerEvent, useEffect, useRef, useState, useMemo, WheelEvent } from "react";
 import useSize from "@react-hook/size";
 import useRenderLoop from "../core/RenderLoop";
 import WorldMosaic from "../../views/WorldMosaic";
@@ -9,22 +8,6 @@ import PostDetails from "../../components/squares/claimed/PostDetails";
 import StakeClaim from "../../components/squares/unclaimed/StakeClaim";
 import { Box } from "@mui/material";
 import { ProjectionContext } from "../../state/useProjectionContext";
-
-const wheelListener = (e: WheelEvent) => {
-  const friction = 0.5;
-  const event = e as WheelEvent;
-  const deltaX = event.deltaX * friction;
-  const deltaY = event.deltaY * friction;
-  if (!event.ctrlKey) {
-    MosaicStore.moveCamera(deltaX, deltaY);
-  } else {
-    MosaicStore.zoomCamera(deltaX, deltaY);
-  }
-};
-
-const pointerListener = (event: PointerEvent) => {
-  MosaicStore.movePointer(event.clientX, event.clientY);
-};
 
 export interface SelectedSquare {
   row: string|number;
@@ -39,9 +22,8 @@ const MosaicRoot = () => {
 
   const projectionDetails = useContext(ProjectionContext);
   useEffect(()=> {
-    console.log(MosaicStore)
     console.log(projectionDetails)
-  },[projectionDetails, MosaicStore])
+  },[projectionDetails])
 
   const {data: grid} = useGetMosaic({resourceKey: 'world'});
   const {data: squaresMap} = useGetMosaicSquares({resourceKey: 'world'});
@@ -52,10 +34,21 @@ const MosaicRoot = () => {
     return squaresMap[`${selectedSquare.row}-${selectedSquare.column}`]
   },[selectedSquare])
 
-  useEffect(() => {
-    if (width === 0 || height === 0) return;
-    MosaicStore.initialize(width, height);
-  }, [width, height]);
+  const pointerListener = useCallback((event: PointerEvent) => {
+    projectionDetails.movePointer(event.clientX, event.clientY)
+  },[projectionDetails])
+
+  const wheelListener = useCallback((event: WheelEvent) => {
+    const friction = 0.5;
+    const deltaX = event.deltaX * friction;
+    const deltaY = event.deltaY * friction;
+    if (!event.ctrlKey) {
+      projectionDetails.moveCamera(deltaX, deltaY);
+    } else {
+      projectionDetails.zoomCamera(deltaX, deltaY);
+    }
+  },[projectionDetails])
+
   const frame = useRenderLoop(10);
   return (
     <Box width="100%" height="100%">

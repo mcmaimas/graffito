@@ -87,11 +87,22 @@ export interface MovePointerAction {
   type: 'movePointer'
 }
 
-export type Action = MoveCameraAction | ZoomCameraAction | MovePointerAction;
+export interface SetRender {
+  type: 'setRender';
+  value: boolean;
+}
+
+export type Action = MoveCameraAction | ZoomCameraAction | MovePointerAction | SetRender;
 
 export default function projectionReducer(state: ProjectionState, action: Action) {
 
   switch (action.type) {
+    case 'setRender':
+      return {
+        ...state,
+        shouldRender: action.value,
+      }
+      break;
     case 'moveCamera':
       const scrollFactor = 1.5;
       const deltaX = action.deltaX * scrollFactor,

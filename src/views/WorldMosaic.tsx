@@ -1,12 +1,12 @@
-import { useMemo, memo} from "react";
+import { useContext, useMemo, memo} from "react";
 
 import { RECT_H, RECT_W } from "../modules/core/constants";
-import MosaicStore from "../modules/state/MosaicStore";
 import {MosaicDetails} from '../hooks/mosaic/useGetMosaic'
 import MosaicSquare from "../components/squares/MosaicSquare";
 import { SelectedSquare } from "../modules/editor/MosaicRoot";
 import { ClaimedSquare } from "../hooks/post/useGetMosaicSquares";
 import { Box } from "@mui/material";
+import { ProjectionContext } from "../state/useProjectionContext";
 
 interface WorldMosaicProps {
   grid?: MosaicDetails;
@@ -19,7 +19,7 @@ interface WorldMosaicProps {
 const WorldMosaic = ({ grid, squaresMap, frame, selectedSquare, setSelectedSquare }: WorldMosaicProps) => {
   const rectW = RECT_W;
   const rectH = RECT_H;
-  const scale = MosaicStore.scale;
+  const {scale} = useContext(ProjectionContext);
 
   const dimArray = useMemo(() => {
     if (!grid) return [];

@@ -1,7 +1,8 @@
-import MosaicStore from "../state/MosaicStore";
-import { PropsWithChildren } from "react";
+
+import { PropsWithChildren, useContext } from "react";
 import { inBounds } from "./math-utils";
 import { Box } from "@mui/material";
+import { ProjectionContext } from "../../state/useProjectionContext";
 
 export interface MosaicPosition {
   top: number;
@@ -17,7 +18,7 @@ export const Position = ({
   height,
   children
 }: PropsWithChildren<MosaicPosition>) => {
-  const screen = MosaicStore.screen;
+  const {screen} = useContext(ProjectionContext);
   if (
     inBounds(
       { left, top, height, width },

@@ -35,7 +35,7 @@ const useProjectionContext = () => {
       scale,
       screen
     });
-  },[scale, screen])
+  },[scale, screen, dispatch])
 
   const zoomCamera = useCallback((deltaX: number, deltaY: number) => {
     dispatch({
@@ -45,7 +45,7 @@ const useProjectionContext = () => {
       scale,
       aspect
     });
-  },[scale, aspect])
+  },[scale, aspect, dispatch])
 
   const movePointer = useCallback((deltaX: number, deltaY: number) => {
     dispatch({
@@ -55,11 +55,18 @@ const useProjectionContext = () => {
       scale,
       screen
     });
-  },[scale, screen])
+  },[scale, screen, dispatch])
+
+  const setRender = useCallback((value: boolean) => {
+    dispatch({
+      type: 'setRender',
+      value
+    });
+  }, [dispatch])
 
   return useMemo(() => ({
-    projectionData, aspect, screen, scale, moveCamera, zoomCamera, movePointer
-  }),[projectionData, aspect, screen, scale, moveCamera, zoomCamera, movePointer])
+    projectionData, aspect, screen, scale, moveCamera, zoomCamera, movePointer, setRender
+  }),[projectionData, aspect, screen, scale, moveCamera, zoomCamera, movePointer, setRender])
 
 }
 

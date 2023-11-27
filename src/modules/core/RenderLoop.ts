@@ -1,5 +1,5 @@
-import MosaicStore from "../state/MosaicStore";
-import { useEffect, useRef, useState } from "react";
+import { ProjectionContext } from "../../state/useProjectionContext";
+import { useContext, useEffect, useRef, useState } from "react";
 
 class RenderLoop {
   private lastFrameTime: number = 0;
@@ -43,17 +43,18 @@ export function getRenderLoop(fps = 15, draw: () => void) {
 
 export const useRenderLoop = (fps: number = 15) => {
   const [frame, setFrame] = useState("0");
+  const {projectionData, setRender} = useContext(ProjectionContext);
   const loop = useRef<RenderLoop>(
     getRenderLoop(fps, () => {
-      if (MosaicStore.shouldRender) {
+      if (projectionData.shouldRender) {
         setFrame(`${performance.now()}`);
-        MosaicStore.shouldRender = false;
+        setRender(false);
       }
     })
   );
 
   useEffect(() => {
-    MosaicStore.shouldRender = true;
+    setRender(true)
     loop.current.start();
 
     return () => loop.current.stop();
