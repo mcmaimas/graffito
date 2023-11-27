@@ -1,11 +1,16 @@
-import { Box } from "@mui/material";
+import { createContext, useCallback, useMemo, useReducer, useState } from 'react';
 import MosaicRoot from "./MosaicRoot";
+import useProjectionContext, {ProjectionContext} from '../../state/useProjectionContext';
+
+
 
 const Editor = () => {
+  const projectionContext = useProjectionContext();
+  if (!projectionContext) return null;
   return (
-    <Box width="100%" height="100%">
+    <ProjectionContext.Provider value={projectionContext}>
       <MosaicRoot />
-    </Box>
+    </ProjectionContext.Provider>
   );
 };
 
