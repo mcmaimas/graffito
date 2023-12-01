@@ -8,6 +8,7 @@ import useGetMosaicSquares, { ClaimedSquare } from "../../hooks/post/useGetMosai
 import PostDetails from "../../components/squares/claimed/PostDetails";
 import StakeClaim from "../../components/squares/unclaimed/StakeClaim";
 import { Box } from "@mui/material";
+import MouseOverNav from './MouseOverNav'
 
 const wheelListener = (e: WheelEvent) => {
   const friction = 0.5;
@@ -74,6 +75,7 @@ const MosaicRoot = () => {
           )}
         </>
       )}
+      <MouseOverNav />
     </Box>
   );
 };
