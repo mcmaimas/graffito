@@ -76,18 +76,19 @@ const MosaicRoot = () => {
 
   useEffect(() => {
     if (!guiding) return;
+    const delta = 15 / window.devicePixelRatio
     switch (guiding) {
       case 'left':
-        MosaicStore.moveCamera(-1, 0);
+        MosaicStore.moveCamera(-delta, 0);
         break;
       case 'right':
-        MosaicStore.moveCamera(1, 0);
+        MosaicStore.moveCamera(delta, 0);
         break;
       case 'up':
-        MosaicStore.moveCamera(0, -1);
+        MosaicStore.moveCamera(0, -delta);
         break;
       case 'down':
-        MosaicStore.moveCamera(0, 1);
+        MosaicStore.moveCamera(0, delta);
         break;
       
     }
