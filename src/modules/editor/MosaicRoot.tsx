@@ -8,7 +8,6 @@ import useGetMosaicSquares, { ClaimedSquare } from "../../hooks/post/useGetMosai
 import PostDetails from "../../components/squares/claimed/PostDetails";
 import StakeClaim from "../../components/squares/unclaimed/StakeClaim";
 import { Box } from "@mui/material";
-import { ProjectionContext } from "../../state/useProjectionContext";
 
 const wheelListener = (e: WheelEvent) => {
   const friction = 0.5;
@@ -36,12 +35,6 @@ const MosaicRoot = () => {
   const [width, height] = useSize(mosaic);
 
   const [selectedSquare, setSelectedSquare] = useState<SelectedSquare>();
-
-  const projectionDetails = useContext(ProjectionContext);
-  useEffect(()=> {
-    console.log(MosaicStore)
-    console.log(projectionDetails)
-  },[projectionDetails, MosaicStore])
 
   const {data: grid} = useGetMosaic({resourceKey: 'world'});
   const {data: squaresMap} = useGetMosaicSquares({resourceKey: 'world'});
