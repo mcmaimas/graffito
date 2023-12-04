@@ -9,53 +9,6 @@ import PostDetails from "../../components/squares/claimed/PostDetails";
 import StakeClaim from "../../components/squares/unclaimed/StakeClaim";
 import { Box } from "@mui/material";
 
-const wheelListener = (e: WheelEvent) => {
-  const friction = 0.5;
-  const event = e as WheelEvent;
-  const deltaX = event.deltaX * friction;
-  const deltaY = event.deltaY * friction;
-  if (!event.ctrlKey) {
-    MosaicStore.moveCamera(deltaX, deltaY);
-  } else {
-    MosaicStore.zoomCamera(deltaX, deltaY);
-  }
-};
-
-const pointerListener = (event: PointerEvent) => {
-  
-  // Check if point is near an edge
-  // console.log(event)
-// console.log(event.clientX)
-// console.log(event.pageX)
-// console.log(event.screenX)
-
-
-  MosaicStore.movePointer(event.clientX, event.clientY);
-
-};
-
-const mouseOverNav = (event: any) => {
-  
-  // Check if point is near an edge
-  // console.log(event)
-// console.log(event.clientX)
-// console.log(event.pageX)
-// console.log(event.screenX)
-
-if (event.clientY < 100) {
-  console.log('move up')
-}
-else if (window.innerHeight <= event.clientY + 100 ) {
-  console.log('move down')
-} else if (event.clientX < 100) {
-  console.log('move left')
-}
-else if (window.innerWidth<= event.clientX + 100 ) {
-  console.log('move right')
-}
-  
-
-};
 
 export interface SelectedSquare {
   row: string|number;
@@ -76,7 +29,7 @@ const MosaicRoot = () => {
 
   useEffect(() => {
     if (!guiding) return;
-    const delta = 15 / window.devicePixelRatio
+    const delta = 20 / window.devicePixelRatio
     switch (guiding) {
       case 'left':
         MosaicStore.moveCamera(-delta, 0);
