@@ -15,11 +15,12 @@ const wheelListener = (e: WheelEvent) => {
   const event = e as WheelEvent;
   const deltaX = event.deltaX * friction;
   const deltaY = event.deltaY * friction;
-  if (!event.ctrlKey) {
-    MosaicStore.moveCamera(deltaX, deltaY);
-  } else {
-    MosaicStore.zoomCamera(deltaX, deltaY);
-  }
+  MosaicStore.zoomCamera(deltaX, deltaY);
+  // if (!event.ctrlKey) {
+  //   MosaicStore.moveCamera(deltaX, deltaY);
+  // } else {
+  //   MosaicStore.zoomCamera(deltaX, deltaY);
+  // }
 };
 
 const pointerListener = (event: PointerEvent) => {

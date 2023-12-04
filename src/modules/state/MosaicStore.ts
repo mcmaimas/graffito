@@ -70,6 +70,12 @@ export default class MosaicStore {
   }
 
   static initialize(width: number, height: number) {
+    
+    // if (!!MosaicData.pixelRatio) return;
+    if(MosaicData.pointer.x !== 0) return;
+    
+    
+
     const containerWidth = width;
     const containerHeight = height;
     MosaicData = getInitialMosaicState();
