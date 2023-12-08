@@ -8,10 +8,10 @@ export const getSquareColor = (square: ClaimedSquare): LeafColor => {
   
   const diffInDays = Math.round(diffInTime / (1000 * 3600 * 24));
   if (diffInDays < 2) return 'darkGreen';
-  else if (diffInDays < 4) return 'green';
-  else if (diffInDays < 7) return 'yellow';
-  else if (diffInDays < 14) return 'orange';
-  else if (diffInDays < 30) return 'red';
+  else if (diffInDays < 7) return 'green';
+  else if (diffInDays < 14) return 'yellow';
+  else if (diffInDays < 30) return 'orange';
+  else if (diffInDays < 90) return 'red';
   
   return 'default'
 }
