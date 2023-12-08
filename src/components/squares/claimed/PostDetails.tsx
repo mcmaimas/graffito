@@ -1,5 +1,4 @@
 import { Avatar, Box, Button, Dialog, DialogContent, DialogTitle, IconButton, OutlinedInput, Tooltip } from "@mui/material";
-// import { ClaimedSquare } from "../../../hooks/mosaic/useGetMosaic";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import { Close, OpenInBrowser, Recommend, Visibility } from "@mui/icons-material";
 import InteractionStatItem from "../../InteractionStatItem";
@@ -35,14 +34,9 @@ const PostDetails = ({post, open, handleClose}: PostDetailsProps) => {
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
         <Box display="flex" overflow="hidden">
           <Box width="66%" overflow="hidden" m={2} display="flex" flexDirection="column">          
-          {post.type === 'text' && <TextPostDetails post={post as TextPost} />}
-          
-            
-          {post.type === 'file' && <FilePostDetails post={post as FilePost}/>}
-
-          {post.type === 'link' && <LinkPostDetails post={post as LinkPost}/>}
-            
-            
+            {post.type === 'text' && <TextPostDetails post={post as TextPost} />}
+            {post.type === 'file' && <FilePostDetails post={post as FilePost}/>}
+            {post.type === 'link' && <LinkPostDetails post={post as LinkPost}/>}
             <Box display="flex" alignItems="center">
               <Box>
                 <Tooltip title={post?.author}>
@@ -63,7 +57,6 @@ const PostDetails = ({post, open, handleClose}: PostDetailsProps) => {
               <Box bgcolor="#FFFFFF" borderRadius="4px" mb={2} p={2}>{comment.text}</Box>
             ))}
             </Box>
-
             <Box flexGrow={1} pt={1}>
               <OutlinedInput fullWidth multiline rows={3}/>
             </Box>
@@ -84,7 +77,6 @@ const TextPostDetails = ({post}: {post: TextPost}) => (
 
 const FilePostDetails = ({post}: {post: FilePost}) => (
   <Box pb={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-    {/* <img alt={post.title} src={(post.content as FileContent).srcUrl} style={{width: "100%", height: "100%"}}/> */}
     {(post.content?.filePaths && post.content?.filePaths[0]) ? (
       <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title} style={{width: "100%", height: "100%"}}/>
     ) : post.content.file ? (
@@ -97,23 +89,20 @@ const FilePostDetails = ({post}: {post: FilePost}) => (
 )
 
 const LinkPostDetails = ({post}: {post: LinkPost}) => {
-  console.log(post)
   return (
     <Box pb={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-          <Box pb={1}>
+      <Box pb={1}>
         <Button startIcon={<OpenInBrowser />} variant="contained" color="info" onClick={()=>window.open(`${post.content.linkUrl}`)}>Visit this page</Button>
       </Box>
       {post.content.previewType === 'dynamic' && (
         <iframe title={post.title} src={post.content.linkUrl} height="100%" width="100%" style={{minHeight: "500px"}}></iframe>
       )}
       {(post.content.previewType === 'static' && post.content?.filePaths && post.content?.filePaths[0]) && (
-      <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title} style={{width: "100%", height: "100%"}}/>
-        
+        <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title} style={{width: "100%", height: "100%"}}/>
       )}
       <Box py={1}>
         {post.content.description}
       </Box>
-  
     </Box>
   )
 }

@@ -20,13 +20,11 @@ const Claimed = ({square, selectedSquare, setSelectedSquare}: ClaimedProps) => {
 
   const selected = selectedSquare?.row === square.row && selectedSquare.column === square.column;
   
-  return (<>
-    {(MosaicStore.camera.z > GRANULAR_ZOOM_MAX) ? (
-      <ZoomedOut color={getSquareColor(square)} selected={selected} onClick={selectSquare}/>
-    ) : (
-      <PostPreview square={square} onClick={selectSquare} />
-    )}
-  </>)
+  return (MosaicStore.camera.z > GRANULAR_ZOOM_MAX) ? (
+    <ZoomedOut color={getSquareColor(square)} selected={selected} onClick={selectSquare}/>
+  ) : (
+    <PostPreview square={square} onClick={selectSquare} />
+  )
 }
 
 export default Claimed;
