@@ -3,14 +3,15 @@ import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
 import { Close, OpenInBrowser, Recommend, Visibility } from "@mui/icons-material";
 import InteractionStatItem from "../../InteractionStatItem";
 import { FilePost, LinkPost, Post, TextPost } from "../../../hooks/post/useGetPost";
+import { ClaimedSquare } from "../../../hooks/post/useGetMosaicSquares";
 
 interface PostDetailsProps {
-  post: Post;
+  square: ClaimedSquare;
   open: boolean;
   handleClose: ()=>void;
 }
 
-const PostDetails = ({post, open, handleClose}: PostDetailsProps) => {
+const PostDetails = ({square, open, handleClose}: PostDetailsProps) => {
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="xl" fullWidth
       PaperProps={{
@@ -18,7 +19,7 @@ const PostDetails = ({post, open, handleClose}: PostDetailsProps) => {
         // boxShadow: `1px 1px 20px 1px ${LEAF_COLOR_SCHEME[color]}`
       }}}
     >
-      <DialogTitle>{post?.title}</DialogTitle>
+      <DialogTitle>{square.post?.title}</DialogTitle>
       <IconButton
         aria-label="close"
         onClick={handleClose}
@@ -34,17 +35,17 @@ const PostDetails = ({post, open, handleClose}: PostDetailsProps) => {
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
         <Box display="flex" overflow="hidden">
           <Box width="66%" overflow="hidden" m={2} display="flex" flexDirection="column">          
-            {post.type === 'text' && <TextPostDetails post={post as TextPost} />}
-            {post.type === 'file' && <FilePostDetails post={post as FilePost}/>}
-            {post.type === 'link' && <LinkPostDetails post={post as LinkPost}/>}
+            {square.post.type === 'text' && <TextPostDetails post={square.post as TextPost} />}
+            {square.post.type === 'file' && <FilePostDetails post={square.post as FilePost}/>}
+            {square.post.type === 'link' && <LinkPostDetails post={square.post as LinkPost}/>}
             <Box display="flex" alignItems="center">
               <Box>
-                <Tooltip title={post?.author}>
-                <Avatar>{post?.author.substring(0,1)}</Avatar>
+                <Tooltip title={square.post?.author}>
+                <Avatar>{square.post?.author.substring(0,1)}</Avatar>
                 </Tooltip>
               </Box>
               <Box px={1}>
-                <em>MM-DD-YYYY</em>
+                <em>{(new Date(square.updatedAt)).toDateString()}</em>
               </Box>
               <Box flexGrow={1} />
               <InteractionStatItem icon={<Visibility fontSize="large"/>} count={0}/>
@@ -53,7 +54,7 @@ const PostDetails = ({post, open, handleClose}: PostDetailsProps) => {
           </Box>
           <Box width="33%" flexGrow={1} m={2} p={2} display="flex" flexDirection="column" >
             <Box height="500px" overflow="auto">
-            {post.comments?.map((comment) => (
+            {square.post.comments?.map((comment) => (
               <Box bgcolor="#FFFFFF" borderRadius="4px" mb={2} p={2}>{comment.text}</Box>
             ))}
             </Box>

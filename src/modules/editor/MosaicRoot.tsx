@@ -70,7 +70,7 @@ const MosaicRoot = () => {
       {selectedSquare && (
         <>
           {squareLookup ? (
-            <PostDetails post={(squareLookup as ClaimedSquare).post} open={!!selectedSquare} handleClose={()=>setSelectedSquare(undefined)}/>
+            <PostDetails square={(squareLookup as ClaimedSquare)} open={!!selectedSquare} handleClose={()=>setSelectedSquare(undefined)}/>
           ) : (
             <StakeClaim square={selectedSquare} open={!!selectedSquare} handleClose={()=>setSelectedSquare(undefined)}/>
           )}
