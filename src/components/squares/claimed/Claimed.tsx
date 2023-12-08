@@ -6,6 +6,8 @@ import ZoomedOut from "../ZoomedOut";
 import PostPreview from "../../PostPreview";
 import { GRANULAR_ZOOM_MAX } from "../../../modules/core/constants";
 import { SelectedSquare } from "../../../modules/editor/MosaicRoot";
+import { getSquareColor } from "../helpers";
+
 
 interface ClaimedProps {
   square: ClaimedSquare;
@@ -20,7 +22,7 @@ const Claimed = ({square, selectedSquare, setSelectedSquare}: ClaimedProps) => {
   
   return (<>
     {(MosaicStore.camera.z > GRANULAR_ZOOM_MAX) ? (
-      <ZoomedOut color={square.color} selected={selected} onClick={selectSquare}/>
+      <ZoomedOut color={getSquareColor(square)} selected={selected} onClick={selectSquare}/>
     ) : (
       <PostPreview square={square} onClick={selectSquare} />
     )}

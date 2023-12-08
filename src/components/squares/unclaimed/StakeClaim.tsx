@@ -60,7 +60,7 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
       const {data: updatedClaim} = await axios.post(`https://breezy-orange-forest.glitch.me/squares/upload/${(claimedSquare as ClaimedSquare)._id}`, formData, { headers: headers });
       console.log(updatedClaim)
     }
-
+    handleClose();
 
   },[previewClaimedSquare, square])
 

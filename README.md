@@ -1,6 +1,7 @@
 # MOSAIC MEDIA
 .dev .io .org
 Until October 2025
+update: there is some actors agency out of LA that is called mosaic media so I may have wasted $200 on domains
 
 ## Functional ToDo's:
 ### Replace Mosaic Store with context
@@ -9,8 +10,14 @@ Until October 2025
 - DONE: Image Post
 - DONE: Link Post
 ### Colors. Do I set them on the backend or should I have a function on the frontend
+- GO with a frontend function for now
 ### Scrolling is f'd. It's laggy and not always centered
+- DONE... for now
+- ctrl zooming was a pain so I cut it and built a new way to nav
+- the cursor pans the screen and scrolling zooms in and out
+- it's counter intuitive since it's non-traditioanl, but now the mouse gives full control without having to use keys
 ### Comment/replies
+- Still a long way before i care about other peoples interaction
 
 ## Tech Debt ToDo:
 ### make repo private

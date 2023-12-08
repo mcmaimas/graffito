@@ -38,6 +38,7 @@ const usePostPreview = ({title, text, files, linkUrl, postType} : PostPreviewPro
       row: 1,
       column: 1,
       color: 'green',
+      updatedAt: '2023-11-26T22:26:31.009Z',
       post: {
         type: postType,
         author: 'me',

@@ -5,6 +5,7 @@ import FadingPaperArticle from "./FadingArticle";
 import { Forum, Recommend, Visibility } from "@mui/icons-material";
 import { FilePost, LinkPost, StaticLinkContent, TextPost } from "../hooks/post/useGetPost";
 import InteractionStatItem from "./InteractionStatItem";
+import { getSquareColor } from "./squares/helpers";
 
 interface PostPreviewProps {
   square: ClaimedSquare;
@@ -13,14 +14,14 @@ interface PostPreviewProps {
 
 export const PostPreview = ({square, onClick}: PostPreviewProps) => {
   return (
-    <Box bgcolor={LEAF_COLOR_SCHEME[square.color]} height="100%" width="100%" p={1} onClick={onClick}>
+    <Box height="100%" width="100%"  onClick={onClick} border={`2px solid ${LEAF_COLOR_SCHEME[getSquareColor(square)]}`}>
       <Box display="flex" flexDirection="column" bgcolor="white" height="100%" width="100%" borderRadius={0.5} position="relative">
         <Box flexGrow={1} overflow="hidden" display="flex" flexDirection="column">
           <Box fontWeight={600} p={1}>{square.post?.title || `Looong title of mine that causes overflow`}</Box>
             {(square.post.type === 'text') && <TextPostPreview  post={square.post as TextPost} />}
             {(square.post.type === 'file') && <FilePostPreview  post={square.post as FilePost} />}
             { (square.post.type === 'link') && <LinkPostPreview post={square.post as LinkPost} />}
-          <Box position="absolute" bottom={0} width="100%" height="32px" display="flex" justifyContent="space-between" bgcolor="#C9C9C911">
+          <Box bgcolor={LEAF_COLOR_SCHEME[getSquareColor(square)]} position="absolute" bottom={0} width="100%" py={1} display="flex" justifyContent="space-between"  >
             <InteractionStatItem icon={<Visibility fontSize="small"/>} count={square?.post?.stats.views || 0}/>
             <InteractionStatItem icon={<Recommend fontSize="small"/>} count={square?.post?.stats?.likes || 0}/>
             <InteractionStatItem icon={<Forum fontSize="small"/>} count={square?.post?.stats.comments || 0}/>
@@ -52,9 +53,9 @@ export const FilePostPreview = ({post}: FilePostPreviewProps) => {
   
 
   return  (
-  <Box display="flex" alignItems="center" flexGrow={1}>
+  <Box display="flex" alignItems="center" >
     {(post.content?.filePaths && post.content?.filePaths[0]) ? (
-      <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title}/>
+      <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title} style={{maxWidth: "100%", maxHeight: "100%"}}/>
     ) : post.content.file ? (
       <img alt={post.title} src={URL.createObjectURL(post.content.file)} style={{maxWidth: "100%", maxHeight: "100%"}}/>
     ) : <>Nope</>}
@@ -71,7 +72,7 @@ export const LinkPostPreview = ({post}: LinkPostPreviewProps) => {
     return <iframe title={post.title} src={post.content.linkUrl} height="75%" width="100%"></iframe>
   }
   if (post.content?.filePaths && post.content?.filePaths[0]) {
-    return <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title}/>
+    return <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title} style={{maxWidth: "100%", maxHeight: "100%"}}/>
   }
   if ((post.content as StaticLinkContent)?.srcUrl) {
     return <img alt={post.title} src={(post.content as StaticLinkContent).srcUrl} style={{maxWidth: "100%", maxHeight: "100%"}}/>

@@ -22,6 +22,7 @@ export interface UnclaimedSquare extends BaseSquare {
 export interface ClaimedSquare extends BaseSquare {
   _id: string;
   post: Post;
+  updatedAt: string;
 }
 
 type SquareMapping = Record<string, ClaimedSquare>; 
