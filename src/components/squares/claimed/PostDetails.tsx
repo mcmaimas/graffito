@@ -86,7 +86,7 @@ const FilePostDetails = ({post}: {post: FilePost}) => (
   <Box pb={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
     {/* <img alt={post.title} src={(post.content as FileContent).srcUrl} style={{width: "100%", height: "100%"}}/> */}
     {(post.content?.filePaths && post.content?.filePaths[0]) ? (
-      <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title}/>
+      <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title} style={{width: "100%", height: "100%"}}/>
     ) : post.content.file ? (
       <img alt={post.title} src={URL.createObjectURL(post.content.file)} style={{maxWidth: "100%", maxHeight: "100%"}}/>
     ) : <>Nope</>}
@@ -97,15 +97,18 @@ const FilePostDetails = ({post}: {post: FilePost}) => (
 )
 
 const LinkPostDetails = ({post}: {post: LinkPost}) => {
+  console.log(post)
   return (
     <Box pb={2} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
           <Box pb={1}>
         <Button startIcon={<OpenInBrowser />} variant="contained" color="info" onClick={()=>window.open(`${post.content.linkUrl}`)}>Visit this page</Button>
       </Box>
-      {post.content.previewType === 'dynamic' ? (
+      {post.content.previewType === 'dynamic' && (
         <iframe title={post.title} src={post.content.linkUrl} height="100%" width="100%" style={{minHeight: "500px"}}></iframe>
-      ) : (
-        <img alt={post.title} src={post.content.srcUrl} style={{width: "100%", height: "100%"}}/>
+      )}
+      {(post.content.previewType === 'static' && post.content?.filePaths && post.content?.filePaths[0]) && (
+      <img src={`https://storage.googleapis.com/molten-goal-386802.appspot.com/${post.content.filePaths[0]}`}  alt={post.title} style={{width: "100%", height: "100%"}}/>
+        
       )}
       <Box py={1}>
         {post.content.description}
