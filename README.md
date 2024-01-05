@@ -3,21 +3,19 @@
 Until October 2025
 update: there is some actors agency out of LA that is called mosaic media so I may have wasted $200 on domains
 
+## Styles ToDo's
+### Create new post scrolling issue
+### Post Preview content should be center better
+
 ## Functional ToDo's:
 ### Replace Mosaic Store with context
-### Setup all post types
-- DONE: Text Post
-- DONE: Image Post
-- DONE: Link Post
-### Colors. Do I set them on the backend or should I have a function on the frontend
-- GO with a frontend function for now
-### Scrolling is f'd. It's laggy and not always centered
-- DONE... for now
-- ctrl zooming was a pain so I cut it and built a new way to nav
-- the cursor pans the screen and scrolling zooms in and out
-- it's counter intuitive since it's non-traditioanl, but now the mouse gives full control without having to use keys
 ### Comment/replies
 - Still a long way before i care about other peoples interaction
+
+### Recently Done:
+- All Post Types are loosely supported
+- colors for square freshness/staleness
+- Navigating is fine
 
 ## Tech Debt ToDo:
 ### make repo private
