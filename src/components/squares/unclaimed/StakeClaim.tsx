@@ -1,8 +1,8 @@
 import { Box, Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, OutlinedInput, TextField, TextareaAutosize, capitalize } from "@mui/material";
 import { LEAF_COLOR_SCHEME } from "../../../theme/colors";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { RECT_H, RECT_W } from "../../../modules/core/constants";
-import { Close, Link } from "@mui/icons-material";
+import { AddLink, AddPhotoAlternate, Close, Link } from "@mui/icons-material";
 import PostPreview from "../../PostPreview";
 import UploadFiles from "../../UploadFiles";
 import { LinkContent, PostType } from "../../../hooks/post/useGetPost";
@@ -29,7 +29,13 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
   const [files, setFiles] = useState<FileList>({} as FileList);
   const [linkUrl, setLinkURL] = useState<string>();
 
-  const [postType, setPostType] = useState<PostType>('text');
+  // const [postType, setPostType] = useState<PostType>('text');
+
+  const postType: PostType = useMemo(() => {
+    if (linkUrl) return 'link'
+    else if (files && files?.length > 0) return 'file'
+    return 'text'
+  },[files, linkUrl])
 
   const previewClaimedSquare = usePostPreview({title, text, files, linkUrl, postType});
 
@@ -84,52 +90,66 @@ const StakeClaim = ({square, open, handleClose}: PreviewProps) => {
       </IconButton>
       <DialogContent style={{backgroundColor: LEAF_COLOR_SCHEME.default}}>
 
-        <Box display="flex" width="100%">
+        <Box display="flex" >
 
           {/* LEFT SIDE */}
           <Box flexGrow={1} display="flex" flexDirection="column">
             {/* Title Input */}
-            <Box mx={2}>
+            <Box>
               <TextField value={title} onChange={(e:any)=>setTitle(e.target.value)} fullWidth  placeholder="Title (optional)"/>
             </Box>
+
+
+
+
+
             {/* Main Text Content Input */}
-            <Box mx={2} flexGrow={1}>
-              <TextareaAutosize value={text} onChange={(e:any)=>setText(e.target.value)} style={{height: "100%", width: "100%", padding: "16px"}} placeholder="Lorem ipsum..."/>
+            <Box flexGrow={1} pt={2}>
+              {/* <TextareaAutosize value={text} onChange={(e:any)=>setText(e.target.value)} style={{ width: "100%", height: "100%"}} placeholder="Lorem ipsum..."/> */}
+              <TextField multiline minRows={15} fullWidth value={text} onChange={(e:any)=>setText(e.target.value)} style={{ width: "100%"}} placeholder="Lorem ipsum..."/>
             </Box>
           </Box>
           <Box px={1} />
           {/* RIGHT SIDE */}
-          <Box width="350px" display="flex" flexDirection="column" alignItems="center">
+          <Box width="350px" display="flex" flexDirection="column" alignItems="center" pb={1}>
             {/* Select the Post Type */}
-            <Box width="100%" pb={2}>
+            {/* <Box width="100%" pb={2}>
               <ButtonGroup fullWidth>
                 <Button variant={postType === 'text' ? 'contained' : 'outlined'} onClick={()=>setPostType('text')}>Text</Button>
                 <Button variant={postType === 'file' ? 'contained' : 'outlined'} onClick={()=>setPostType('file')}>Image</Button>
                 <Button variant={postType === 'link' ? 'contained' : 'outlined'} onClick={()=>setPostType('link')}>Link</Button>
               </ButtonGroup>
-            </Box>
+            </Box> */}
  
-            {/* Upload a file */}
-            {postType !== 'text' && (
-              <Box width="100%">
+            <Box width="100%">
                 <UploadFiles files={files} setFiles={setFiles}/>
               </Box>
-            )}
             <Box>
               <Box height={RECT_H} width={RECT_W} >
                 <PostPreview square={previewClaimedSquare}/>
               </Box>
             </Box>
+            <Box display="flex" justifyContent="flex-end" width="100%" pr={4} pt={1}>
+              <IconButton><AddPhotoAlternate /></IconButton>
+              <IconButton><AddLink /></IconButton>
+            </Box>
 
-           {/* Set a link  */}
-           {postType === 'link' && (
+                                   {/* Set a link  */}
+           
               <Box width="100%" px={2} pb={2}>
                 <Box display="flex" justifyContent="center">
-                  <Box width="8px" height="16px" bgcolor={(linkUrl && !files?.length) ? LEAF_COLOR_SCHEME["green"] : undefined} />
+                  <Box width="8px" height="24px" bgcolor={linkUrl ? LEAF_COLOR_SCHEME["green"] : undefined} />
                 </Box>
-                <OutlinedInput placeholder="Paste a website URL here" value={linkUrl} startAdornment={<Link />} onChange={(e:any) => setLinkURL(e.target.value)} fullWidth/>
+                <Box bgcolor={LEAF_COLOR_SCHEME["red"]} borderRadius="4px">
+                <OutlinedInput placeholder="Paste a website URL here" style={{fontSize: "12px", border: linkUrl ? "1px solid green" : undefined}} value={linkUrl} startAdornment={<Link />} 
+                  endAdornment={linkUrl ? <IconButton aria-label="close" onClick={()=>setLinkURL('')} >
+                  <Close />
+                </IconButton> : null} 
+                  onChange={(e:any) => setLinkURL(e.target.value)} fullWidth/>
+                  </Box>
               </Box>
-            )}
+            
+
 
           </Box>
         </Box>
